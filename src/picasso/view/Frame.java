@@ -3,12 +3,15 @@ package picasso.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.*;
 
 import picasso.model.Pixmap;
 import picasso.util.ThreadedCommand;
 import picasso.view.commands.*;
+import picasso.parser.*;
+import picasso.parser.tokens.Token;
 
 /**
  * Main container for the Picasso application
@@ -55,8 +58,9 @@ public class Frame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();
         if (s.equals("submit")) {
-        	System.out.println(inputField.getText());
-            inputField.getText();
+        	Tokenizer tokenizer = new Tokenizer();
+        	List<Token> l = tokenizer.parseTokens(inputField.getText());
+			System.out.println(l);
             inputField.setText("");
 
         }
