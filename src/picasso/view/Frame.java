@@ -1,8 +1,7 @@
 package picasso.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import javax.swing.JFrame;
+import java.awt.*;
+import javax.swing.*;
 
 import picasso.model.Pixmap;
 import picasso.util.ThreadedCommand;
@@ -22,12 +21,16 @@ public class Frame extends JFrame {
 		// create GUI components
 		Canvas canvas = new Canvas(this);
 		canvas.setSize(size);
+		JLabel inputLabel = new JLabel ("Enter expression: ");
+		JTextField inputField = new JTextField(10);
 
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
 		commands.add("Open", new Reader());
-		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
+		commands.add(inputLabel);
+		commands.add(inputField);	
+		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));		
 
 		// add our container to Frame and show it
 		getContentPane().add(canvas, BorderLayout.CENTER);
