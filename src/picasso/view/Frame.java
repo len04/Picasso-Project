@@ -21,10 +21,13 @@ public class Frame extends JFrame implements ActionListener {
 	JTextField inputField;	
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+		
 		// create GUI components
 		Canvas canvas = new Canvas(this);
 		canvas.setSize(size);
+		
+		JTextField newTitle = new JTextField("Champions");		
+		this.setTitle(newTitle.getText());		
 		
 		JLabel inputLabel = new JLabel ("Enter expression: ");
 		inputField = new JTextField(10);
