@@ -1,12 +1,12 @@
 package picasso.view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
 import picasso.model.Pixmap;
-import picasso.util.NamedCommand;
 import picasso.util.ThreadedCommand;
 import picasso.view.commands.*;
 
@@ -17,7 +17,8 @@ import picasso.view.commands.*;
  * 
  */
 @SuppressWarnings("serial")
-public class Frame extends JFrame {
+public class Frame extends JFrame implements ActionListener {
+	JTextField inputField;	
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -26,7 +27,8 @@ public class Frame extends JFrame {
 		canvas.setSize(size);
 		
 		JLabel inputLabel = new JLabel ("Enter expression: ");
-		JTextField inputField = new JTextField(10);
+		inputField = new JTextField(10);
+		JButton submit = new JButton("submit");
 		
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
@@ -35,15 +37,25 @@ public class Frame extends JFrame {
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));	
 		
 		commands.add(inputLabel);
-		commands.add(inputField);	
-		commands.add("Submit", new NamedCommand(canvas, new Evaluator()));			
-		
-		// inputField.addActionListener((ActionListener) this);
+		commands.add(inputField);
+		commands.add(submit);
+		submit.addActionListener(this);
 
 		// add our container to Frame and show it
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
 		
 		pack();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String s = e.getActionCommand();
+        if (s.equals("submit")) {
+        	System.out.println(inputField.getText());
+            inputField.getText();
+            inputField.setText("");
+
+        }
 	}
 }
