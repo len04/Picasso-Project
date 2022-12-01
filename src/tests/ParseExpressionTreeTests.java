@@ -72,4 +72,13 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
 
+	@Test
+	public void clampFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("clamp( x )");
+		assertEquals(new Clamp(new X()), e);
+
+		e = parser.makeExpression("clamp( x + y )");
+		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
+	}
+
 }
