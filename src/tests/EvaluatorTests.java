@@ -68,6 +68,28 @@ public class EvaluatorTests {
 		}
 	}
 
+	@Test
+	public void testClampEvaluation() {
+		Clamp myTree = new Clamp(new X());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(.4, .4, .4), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(9.999, -1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(-1.7, -1));
+
+		Clamp myTree1 = new Clamp(new Y());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(9.999, -2));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(-1.7, 5));
+
+
+		}
+
+
+	
+
 	// TODO: More tests of evaluation
 	@Test
 	public void testAbsEvaluation() {
