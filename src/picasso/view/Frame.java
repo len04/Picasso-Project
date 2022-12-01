@@ -10,7 +10,9 @@ import javax.swing.*;
 import picasso.model.Pixmap;
 import picasso.util.ThreadedCommand;
 import picasso.view.commands.*;
-import picasso.parser.*;
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.Tokenizer;
+import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.tokens.Token;
 
 /**
@@ -21,12 +23,13 @@ import picasso.parser.tokens.Token;
  */
 @SuppressWarnings("serial")
 public class Frame extends JFrame implements ActionListener {
-	JTextField inputField;	
+	JTextField inputField;
+	private Canvas canvas;	
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// create GUI components
-		Canvas canvas = new Canvas(this);
+		canvas = new Canvas(this);
 		canvas.setSize(size);
 		
 		JTextField newTitle = new JTextField("Champions");		
@@ -58,10 +61,14 @@ public class Frame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();
         if (s.equals("submit")) {
+        	// new ThreadedCommand<Pixmap>(canvas, new Evaluator());
         	Tokenizer tokenizer = new Tokenizer();
         	List<Token> l = tokenizer.parseTokens(inputField.getText());
 			System.out.println(l);
-            inputField.setText("");
+			ExpressionTreeGenerator tree = new ExpressionTreeGenerator();
+			// ExpressionTreeGenerator.makeExpression(l);
+			// ExpressionTreeNode n = 0;
+			inputField.setText("");
 
         }
 	}
