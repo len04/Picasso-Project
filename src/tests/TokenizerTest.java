@@ -100,6 +100,13 @@ public class TokenizerTest {
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
+
+		String expression9 = "tan(x)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new TanToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
 	}
 	
 	@Test
@@ -107,6 +114,16 @@ public class TokenizerTest {
 		String expression = "cos(x)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new CosToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+	}
+
+	@Test
+	public void testTokenizeTangentFunctionExpression() {
+		String expression = "tan(x)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new TanToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
