@@ -89,5 +89,16 @@ public class ParseExpressionTreeTests {
 		e = parser.makeExpression("clamp( x + y )");
 		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
 	}
+	
+	@Test
+	public void cosineFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("cos( x )");
+		assertEquals(new Clamp(new X()), e);
+
+		e = parser.makeExpression("cos( x + y )");
+		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
+	}
+	
+	
 
 }
