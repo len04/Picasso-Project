@@ -71,6 +71,15 @@ public class ParseExpressionTreeTests {
 		e = parser.makeExpression("floor( x + y )");
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
+	
+	@Test
+	public void absFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("abs( x )");
+		assertEquals(new AbsoluteValue(new X()), e);
+
+		//e = parser.makeExpression("abs( x + y )");
+		//assertEquals(new AbsoluteValue(new Addition(new X(), new Y())), e);
+	}
 
 	@Test
 	public void clampFunctionTests() {
