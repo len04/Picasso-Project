@@ -1,8 +1,10 @@
 package picasso.parser.tokens.functions;
 
 /**
- * Represents the absolute value function token
- *
+ * Represents the cosine function token
+ * 
+ * @author Ngoc le
+ *  
  */
 public class CosToken extends FunctionToken {
 

@@ -1,29 +1,30 @@
 package picasso.parser.language.expressions;
 
+import java.lang.Math;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the absolute value function in the Picasso language.
+ * Represents the cosine function in the Picasso language.
  * 
- * @author Ngoc Le
+ * @author Ngoc le
  * 
  */
 public class Cosine extends UnaryFunction {
 
 	/**
-	 * Create an absolute value expression that takes as a parameter the given expression
+	 * Create a cosine expression that takes as a parameter the given expression
 	 * 
-	 * @param param the expression to floor
+	 * @param param the expression to cosine
 	 */
 	public Cosine(ExpressionTreeNode param) {
 		super(param);
 	}
 
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the 
-	 * absolute value of the function's parameter.
+	 * Evaluates this expression at the given x,y point by evaluating the cosine of
+	 * the function's parameter.
 	 * 
-	 * @return the color from evaluating the absolute value of the expression's parameter
+	 * @return the color from evaluating the cosine of the expression's parameter
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
@@ -36,4 +37,3 @@ public class Cosine extends UnaryFunction {
 	}
 
 }
-

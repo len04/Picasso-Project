@@ -7,15 +7,18 @@ import picasso.parser.language.expressions.Sine;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the Sin function.
+ * Handles parsing the sine function.
  * 
+ * @author Fekry Mostafa
  * 
  */
 public class SinAnalyzer extends UnaryFunctionAnalyzer {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
-		tokens.pop();
+		tokens.pop(); // Need to remove the sine token
+		// the parameter is the next token on the stack.
+		// But, it needs to be processed
 		return new Sine(SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens));
 	}
