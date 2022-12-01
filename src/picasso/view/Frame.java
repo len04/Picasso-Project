@@ -62,10 +62,12 @@ public class Frame extends JFrame implements ActionListener {
 		String s = e.getActionCommand();
         if (s.equals("submit")) {
         	// new ThreadedCommand<Pixmap>(canvas, new Evaluator());
-        	Tokenizer tokenizer = new Tokenizer();
-        	List<Token> l = tokenizer.parseTokens(inputField.getText());
-			System.out.println(l);
-			ExpressionTreeGenerator tree = new ExpressionTreeGenerator();
+        	ExpressionTreeGenerator etg = new ExpressionTreeGenerator();
+        	ExpressionTreeNode etn = etg.makeExpression(inputField.getText());
+        	//Tokenizer tokenizer = new Tokenizer();
+        	// List<Token> l = tokenizer.parseTokens(inputField.getText());
+			System.out.println(etn);
+			// ExpressionTreeGenerator tree = new ExpressionTreeGenerator();
 			// ExpressionTreeGenerator.makeExpression(l);
 			// ExpressionTreeNode n = 0;
 			inputField.setText("");
