@@ -71,43 +71,5 @@ public class ParseExpressionTreeTests {
 		e = parser.makeExpression("floor( x + y )");
 		assertEquals(new Floor(new Addition(new X(), new Y())), e);
 	}
-	
-	@Test
-	public void absFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("abs( x )");
-		assertEquals(new AbsoluteValue(new X()), e);
-
-		//e = parser.makeExpression("abs( x + y )");
-		//assertEquals(new AbsoluteValue(new Addition(new X(), new Y())), e);
-	}
-
-	@Test
-	public void clampFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("clamp( x )");
-		assertEquals(new Clamp(new X()), e);
-
-		e = parser.makeExpression("clamp( x + y )");
-		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
-	}
-	
-	@Test
-	public void cosineFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("cos( x )");
-		assertEquals(new Clamp(new X()), e);
-
-		e = parser.makeExpression("cos( x + y )");
-		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
-	}
-
-	@Test
-	public void tangentFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("tan( x )");
-		assertEquals(new Tan(new X()), e);
-
-		e = parser.makeExpression("tan( x + y )");
-		assertEquals(new Tan(new Addition(new X(), new Y())), e);
-	}
-	
-	
 
 }

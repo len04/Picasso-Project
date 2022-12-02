@@ -3,6 +3,7 @@ package picasso.parser.tokens.functions;
 /**
  * Represents the sine function token
  * 
+ * @author Fekry Mostafa
  */
 public class SinToken extends FunctionToken {
 

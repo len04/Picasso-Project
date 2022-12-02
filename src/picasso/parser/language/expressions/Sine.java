@@ -1,9 +1,12 @@
 package picasso.parser.language.expressions;
 
+import java.lang.Math;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
  * Represents the sine function in the Picasso language.
+ * 
+ * @author Fekry Mostafa
  * 
  */
 public class Sine extends UnaryFunction {

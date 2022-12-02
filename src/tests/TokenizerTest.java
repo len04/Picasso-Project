@@ -141,6 +141,8 @@ public class TokenizerTest {
 	}
 
 
+	}
+
 	@Test
 	public void testTokenizeCombinedFunctionExpression() {
 		String expression = "perlinColor(floor(x), y)";
