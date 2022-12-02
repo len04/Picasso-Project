@@ -75,28 +75,28 @@ public class ParseExpressionTreeTests {
 	@Test
 	public void cosineFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
-		assertEquals(new Tangent(new X()), e);
+		assertEquals(new Cosine(new X()), e);
 
 		e = parser.makeExpression("cos( x + y )");
-		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
 	}
 	
 	@Test
 	public void sineFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("sin( x )");
-		assertEquals(new Tangent(new X()), e);
+		assertEquals(new Sine(new X()), e);
 
 		e = parser.makeExpression("sin( x + y )");
-		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+		assertEquals(new Sine(new Addition(new X(), new Y())), e);
 	}
 	
 	@Test
 	public void absoluteFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("abs( x )");
-		assertEquals(new Tangent(new X()), e);
+		assertEquals(new Absolute(new X()), e);
 
 		e = parser.makeExpression("abs( x + y )");
-		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
 	}
 
 	@Test
