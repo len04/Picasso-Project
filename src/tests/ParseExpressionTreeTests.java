@@ -44,14 +44,14 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Addition(new X(), new Y()), e);
 		
 		// no spaces!
-		ExpressionTreeNode e = parser.makeExpression("x+y");
-		assertEquals(new Addition(new X(), new Y()), e);
+		ExpressionTreeNode e1 = parser.makeExpression("x+y");
+		assertEquals(new Addition(new X(), new Y()), e1);
 
-		e = parser.makeExpression("[1,.3,-1] + y");
-		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e);
+		e1 = parser.makeExpression("[1,.3,-1] + y");
+		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e1);
 		
-		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
-		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		e1 = parser.makeExpression("x + y + [ -.51, 0, 1]");
+		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
 
 	@Test
@@ -75,10 +75,10 @@ public class ParseExpressionTreeTests {
 	@Test
 	public void tangentFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("tan( x )");
-		assertEquals(new Tan(new X()), e);
+		assertEquals(new Tangent(new X()), e);
 
 		e = parser.makeExpression("tan( x + y )");
-		assertEquals(new Tan(new Addition(new X(), new Y())), e);
+		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
 	}
 	
 }
