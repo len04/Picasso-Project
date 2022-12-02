@@ -44,14 +44,14 @@ public class ParseExpressionTreeTests {
 		assertEquals(new Addition(new X(), new Y()), e);
 		
 		// no spaces!
-		ExpressionTreeNode e = parser.makeExpression("x+y");
-		assertEquals(new Addition(new X(), new Y()), e);
+		ExpressionTreeNode e1 = parser.makeExpression("x+y");
+		assertEquals(new Addition(new X(), new Y()), e1);
 
-		e = parser.makeExpression("[1,.3,-1] + y");
-		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e);
+		e1 = parser.makeExpression("[1,.3,-1] + y");
+		assertEquals(new Addition(new RGBColor(1, .3, -1), new Y()), e1);
 		
-		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
-		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+		e1 = parser.makeExpression("x + y + [ -.51, 0, 1]");
+		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
 
 	@Test
@@ -75,28 +75,28 @@ public class ParseExpressionTreeTests {
 	@Test
 	public void cosineFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
-		assertEquals(new Tangent(new X()), e);
+		assertEquals(new Cosine(new X()), e);
 
 		e = parser.makeExpression("cos( x + y )");
-		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
 	}
 	
 	@Test
 	public void sineFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("sin( x )");
-		assertEquals(new Tangent(new X()), e);
+		assertEquals(new Sine(new X()), e);
 
 		e = parser.makeExpression("sin( x + y )");
-		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+		assertEquals(new Sine(new Addition(new X(), new Y())), e);
 	}
 	
 	@Test
 	public void absoluteFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("abs( x )");
-		assertEquals(new Tangent(new X()), e);
+		assertEquals(new Absolute(new X()), e);
 
 		e = parser.makeExpression("abs( x + y )");
-		assertEquals(new Tangent(new Addition(new X(), new Y())), e);
+		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
 	}
 
 	@Test
