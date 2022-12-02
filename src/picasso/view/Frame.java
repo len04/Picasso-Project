@@ -53,7 +53,7 @@ public class Frame extends JFrame {
 				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, new Evaluator());									
 				action.execute(canvas.getPixmap());
 				canvas.refresh();
-				inputField.setText("");
+				// inputField.setText("");
 				}
 		});
 		
