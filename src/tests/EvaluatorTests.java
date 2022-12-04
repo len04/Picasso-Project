@@ -144,29 +144,29 @@ public class EvaluatorTests {
 	}
 	
 	@Test
-public void testTangentEvaluation() {
-	Tangent myTree = new Tangent(new X());
+	public void testTangentEvaluation() {
+		Tangent myTree = new Tangent(new X());
+		
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.tan(.4), Math.tan(.4), Math.tan(.4)), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(Math.tan(.999), Math.tan(.999), Math.tan(.999)), myTree.evaluate(.999, -1));
+		assertEquals(new RGBColor(Math.tan(-.7), Math.tan(-.7), Math.tan(-.7)), myTree.evaluate(-.7, -1));
 	
-	// some straightforward tests
-	assertEquals(new RGBColor(Math.tan(.4), Math.tan(.4), Math.tan(.4)), myTree.evaluate(.4, -1));
-	assertEquals(new RGBColor(Math.tan(.999), Math.tan(.999), Math.tan(.999)), myTree.evaluate(.999, -1));
-	assertEquals(new RGBColor(Math.tan(-.7), Math.tan(-.7), Math.tan(-.7)), myTree.evaluate(-.7, -1));
-
-	// test the ints; remember that y's value doesn't matter
-	for (int i = -1; i <= 1; i++) {
-		assertEquals(new RGBColor(Math.tan(i), Math.tan(i), Math.tan(i)), myTree.evaluate(i, -i));
-		assertEquals(new RGBColor(Math.tan(i), Math.tan(i), Math.tan(i)), myTree.evaluate(i, i));
-	}
-
-	double[] tests = { -.7, -.00001, .000001, .5 };
-
-	for (double testVal : tests) {
-		double tangentOfTestVal = Math.tan(testVal);
-		assertEquals(new RGBColor(tangentOfTestVal, tangentOfTestVal, tangentOfTestVal), myTree.evaluate(testVal, -1));
-		assertEquals(new RGBColor(tangentOfTestVal, tangentOfTestVal, tangentOfTestVal),
-				myTree.evaluate(testVal, testVal));
+		// test the ints; remember that y's value doesn't matter
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.tan(i), Math.tan(i), Math.tan(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.tan(i), Math.tan(i), Math.tan(i)), myTree.evaluate(i, i));
 		}
-	}
+	
+		double[] tests = { -.7, -.00001, .000001, .5 };
+	
+		for (double testVal : tests) {
+			double tangentOfTestVal = Math.tan(testVal);
+			assertEquals(new RGBColor(tangentOfTestVal, tangentOfTestVal, tangentOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(tangentOfTestVal, tangentOfTestVal, tangentOfTestVal),
+					myTree.evaluate(testVal, testVal));
+			}
+		}
 	
 	@Test
 	public void testAdditionEvaluation() {
@@ -176,5 +176,15 @@ public void testTangentEvaluation() {
 			assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 0));
 			
 		}
+	}
+	
+	@Test
+	public void testClampEvaluation() {
+		Clamp myTree = new Clamp(new X());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(-.5, -.5, -.5), myTree.evaluate(-0.5, -1));
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1.2, -1));
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(-2, -1));
 	}
 }
