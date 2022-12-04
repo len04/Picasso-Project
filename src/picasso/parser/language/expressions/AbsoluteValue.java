@@ -13,7 +13,7 @@ public class AbsoluteValue extends UnaryFunction {
 	/**
 	 * Create an absolute value expression that takes as a parameter the given expression
 	 * 
-	 * @param param the expression to floor
+	 * @param param the expression to take the absolute value of
 	 */
 	public AbsoluteValue(ExpressionTreeNode param) {
 		super(param);
