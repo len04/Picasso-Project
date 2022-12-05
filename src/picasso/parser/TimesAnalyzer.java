@@ -7,12 +7,12 @@ import picasso.parser.language.expressions.Multiplication;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the addition function.
+ * Handles parsing the multiplication function.
  * 
  * @author Ngoc Le
  * 
  */
-public class TImesAnalyzer implements SemanticAnalyzerInterface {
+public class TimesAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {

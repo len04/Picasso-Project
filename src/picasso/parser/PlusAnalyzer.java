@@ -9,8 +9,7 @@ import picasso.parser.tokens.Token;
 /**
  * Handles parsing the addition function.
  * 
- * @author Robert C. Duvall
- * @author Sara Sprenkle
+ * @author Ngoc Le
  * 
  */
 public class PlusAnalyzer implements SemanticAnalyzerInterface {
