@@ -3,20 +3,20 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Addition;
+import picasso.parser.language.expressions.Subtraction;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the addition function.
+ * Handles parsing the subtraction function.
  * 
  * @author Ngoc Le
  * 
  */
-public class PlusAnalyzer implements SemanticAnalyzerInterface {
+public class MinusAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
-		tokens.pop(); // Remove the plus token
+		tokens.pop(); // Remove the minus token
 		// the parameters are the next tokens on the stack.
 		// But, they need to be processed
 		ExpressionTreeNode param1 = SemanticAnalyzer.getInstance().generateExpressionTree(
@@ -24,7 +24,7 @@ public class PlusAnalyzer implements SemanticAnalyzerInterface {
 		ExpressionTreeNode param2 = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 				
-		return new Addition(param2, param1);
+		return new Subtraction(param2, param1);
 	}
 
 }

@@ -3,19 +3,19 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the floor function in the Picasso language.
+ * Represents the subtraction operation in the Picasso language.
  * 
  * @author Ngoc Le
  * 
  */
-public class Multiplication extends BinaryOperator {
+public class Subtraction extends BinaryOperator {
 
 	/**
 	 * Create a floor expression that takes as a parameter the given expression
 	 * 
 	 * @param param the expression to floor
 	 */
-	public Multiplication(ExpressionTreeNode param1, ExpressionTreeNode param2) {
+	public Subtraction(ExpressionTreeNode param1, ExpressionTreeNode param2) {
 		super(param1, param2);
 		
 	}
@@ -31,9 +31,9 @@ public class Multiplication extends BinaryOperator {
 		RGBColor result1 = param1.evaluate(x, y);
 		RGBColor result2 = param2.evaluate(x, y);
 		
-		double red = result1.getRed() * result2.getRed();
-		double green = result1.getGreen() * result2.getGreen();
-		double blue = result1.getBlue() * result2.getBlue();
+		double red = result1.getRed() - result2.getRed();
+		double green = result1.getGreen() - result2.getGreen();
+		double blue = result1.getBlue() - result2.getBlue();
 
 		return new RGBColor(red, green, blue);
 	}
