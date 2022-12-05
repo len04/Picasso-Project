@@ -187,4 +187,12 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1.2, -1));
 		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(-2, -1));
 	}
+	
+	@Test
+	public void testMultiplicationEvaluation() {
+		Multiplication myTree = new Multiplication(new X(), new Y());
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i*i, i*i, i*i), myTree .evaluate(i, i));
+		}
+	}
 }

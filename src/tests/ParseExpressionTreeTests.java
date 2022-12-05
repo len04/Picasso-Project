@@ -53,7 +53,24 @@ public class ParseExpressionTreeTests {
 		e1 = parser.makeExpression("x + y + [ -.51, 0, 1]");
 		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
+	
+	@Test
+	public void multiplicationExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x * y");
+		assertEquals(new Multiplication(new X(), new Y()), e);
+		
+		// no spaces!
+		ExpressionTreeNode e1 = parser.makeExpression("x*y");
+		assertEquals(new Multiplication(new X(), new Y()), e1);
 
+		e1 = parser.makeExpression("[1,.3,-1] * y");
+		assertEquals(new Multiplication(new RGBColor(1, .3, -1), new Y()), e1);
+		
+		e1 = parser.makeExpression("x * y * [ -.51, 0, 1]");
+		assertEquals(new Multiplication(new Multiplication(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
+	}
+
+	
 	@Test
 	public void parenthesesExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("( x + y )");
@@ -116,8 +133,5 @@ public class ParseExpressionTreeTests {
 		e = parser.makeExpression("clamp( x + y )");
 		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
 	}
-	
-	
-	
 	
 }
