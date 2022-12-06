@@ -13,6 +13,7 @@ import picasso.parser.Tokenizer;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
+import picasso.parser.tokens.operations.MinusToken;
 import picasso.parser.tokens.operations.PlusToken;
 import picasso.parser.tokens.operations.TimesToken;
 
@@ -136,6 +137,15 @@ public class TokenizerTest {
 		assertEquals(new PlusToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 
+	}
+	
+	@Test
+	public void testTokenizeMinusOperatorExpression() {
+		String expression = "x-y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new MinusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 	}
 	
 	@Test
