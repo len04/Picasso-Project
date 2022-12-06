@@ -18,8 +18,6 @@ public class TimesAnalyzer implements SemanticAnalyzerInterface {
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop(); // Remove the times token
 		// the parameters are the next tokens on the stack.
-		// But, they need to be processed
-		// TODO: Need to finish.
 		ExpressionTreeNode param1 = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 		ExpressionTreeNode param2 = SemanticAnalyzer.getInstance().generateExpressionTree(

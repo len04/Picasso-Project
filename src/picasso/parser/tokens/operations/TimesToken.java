@@ -4,7 +4,7 @@ import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
 
 /**
- * Represents the plus sign token
+ * Represents the times sign token
  * 
  */
 public class TimesToken extends CharToken implements OperationInterface {

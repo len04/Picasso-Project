@@ -11,9 +11,9 @@ import picasso.parser.language.ExpressionTreeNode;
 public class Subtraction extends BinaryOperator {
 
 	/**
-	 * Create a floor expression that takes as a parameter the given expression
+	 * Create a subtraction expression that takes as two parameters the given expression
 	 * 
-	 * @param param the expression to floor
+	 * @param param the expression to subtraction
 	 */
 	public Subtraction(ExpressionTreeNode param1, ExpressionTreeNode param2) {
 		super(param1, param2);
@@ -21,10 +21,10 @@ public class Subtraction extends BinaryOperator {
 	}
 
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the floor of
-	 * the function's parameter.
+	 * Evaluates this expression at the given x,y point by evaluating the subtraction of
+	 * the operation's parameters.
 	 * 
-	 * @return the color from evaluating the floor of the expression's parameter
+	 * @return the color from evaluating the subtraction of the expression's parameters
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
