@@ -3,7 +3,7 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the floor function in the Picasso language.
+ * Represents the division operation in the Picasso language.
  * 
  * @author Ngoc Le
  * 
@@ -11,9 +11,9 @@ import picasso.parser.language.ExpressionTreeNode;
 public class Division extends BinaryOperator {
 
 	/**
-	 * Create a floor expression that takes as a parameter the given expression
+	 * Create a division operation that takes as two parameters the given expression
 	 * 
-	 * @param param the expression to floor
+	 * @param param the expression to divide
 	 */
 	public Division(ExpressionTreeNode param1, ExpressionTreeNode param2) {
 		super(param1, param2);

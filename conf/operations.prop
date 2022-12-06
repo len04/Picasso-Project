@@ -1,3 +1,6 @@
 +=Plus
 -=Minus
 *=Times
+/=Divide
+^=Exponentiate
+%=Mod

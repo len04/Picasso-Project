@@ -3,7 +3,7 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Division;
+import picasso.parser.language.expressions.Modulo;
 import picasso.parser.tokens.Token;
 
 /**
@@ -12,7 +12,7 @@ import picasso.parser.tokens.Token;
  * @author Ngoc Le
  * 
  */
-public class DivideAnalyzer implements SemanticAnalyzerInterface {
+public class ModAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
@@ -23,7 +23,7 @@ public class DivideAnalyzer implements SemanticAnalyzerInterface {
 		ExpressionTreeNode param2 = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 				
-		return new Division(param2, param1);
+		return new Modulo(param2, param1);
 	}
 
 }
