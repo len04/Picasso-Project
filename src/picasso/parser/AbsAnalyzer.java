@@ -19,7 +19,7 @@ public class AbsAnalyzer extends UnaryFunctionAnalyzer {
 		tokens.pop(); // Need to remove the absolute value token
 		// the parameter is the next token on the stack.
 		// But, it needs to be processed
-		return new Absolute(SemanticAnalyzer.getInstance().generateExpressionTree(
+		return new AbsoluteValue(SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens));
 	}
 
