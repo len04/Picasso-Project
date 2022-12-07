@@ -30,12 +30,15 @@ public class ImageClip extends MultiArgFunction {
 	
 	@Override
 	public RGBColor evaluate(double x, double y) { 
-		double new_x = Clamp.clamp(x);
-		double new_y = Clamp.clamp(y);
+		double new_x = Clamp.clamp(param2.evaluate(x, y).getRed());
+		double new_y = Clamp.clamp(param3.evaluate(x, y).getRed());
 		
 		BufferedImage img = null;
+		String fileName = "vortex.jpg";
+		
+		// TODO: something is faulty with this - path?
 		try {
-			img = ImageIO.read(new File("images/vortex.jpg"));
+			img = ImageIO.read(new File("vortex.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,7 +47,7 @@ public class ImageClip extends MultiArgFunction {
 //      int green = (clr & 0x0000ff00) >> 8;
 //      int blue =   clr & 0x000000ff;
 		
-		return new RGBColor(red, green, blue);
+		return new RGBColor(1,-1,1);
 	}
 
 }
