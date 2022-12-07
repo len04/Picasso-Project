@@ -70,7 +70,7 @@ public class EvaluatorTests {
 
 	@Test
 	public void testAbsEvaluation() {
-		Absolute myTree = new Absolute(new X());
+		AbsoluteValue myTree = new AbsoluteValue(new X());
 
 		// some straightforward tests
 		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, -1));
