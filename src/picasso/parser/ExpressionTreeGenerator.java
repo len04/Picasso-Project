@@ -24,6 +24,7 @@ public class ExpressionTreeGenerator {
 	private static final int GROUPING = 1; // parentheses
 	private static final int ADD_OR_SUBTRACT = 2;
 	private static final int MULTIPLY_OR_DIVIDE = 3;
+	private static final int EXPONENTIATE = 4;
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
@@ -185,13 +186,15 @@ public class ExpressionTreeGenerator {
 	 */
 	private int orderOfOperation(Token token) {
 
-		// TODO: Need to finish with other operators.
-
 		// TODO: DISCUSS: Is it better to have a method in the OperatorToken
 		// class that gives the order of operation?
 
-		if (token instanceof PlusToken)
+		if (token instanceof PlusToken || token instanceof MinusToken)
 			return ADD_OR_SUBTRACT;
+		if (token instanceof TimesToken || token instanceof ModToken)
+			return MULTIPLY_OR_DIVIDE;
+		if (token instanceof ExponentiateToken)
+			return EXPONENTIATE;
 		else
 			return CONSTANT;
 	}
