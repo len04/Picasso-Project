@@ -24,8 +24,18 @@ public class Reader extends FileCommand<Pixmap> {
 	 */
 	public void execute(Pixmap target) {
 		String fileName = getFileName();
+		System.out.println(fileName);
+	    int index = fileName.lastIndexOf('.');
+	    String extension = fileName.substring( index+1);
+	    System.out.println(extension);
 		if (fileName != null) {
-			target.read(fileName);
+			if (extension.equals("png") || extension.equals("jpg")) {
+				System.out.println("sucess");
+				target.read(fileName);
+			}
+			else if (extension.equals("exp")) {
+				System.out.println();
+			}
 		}
 	}
 }
