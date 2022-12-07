@@ -1,9 +1,11 @@
 package picasso.view.commands;
 
 import javax.swing.JFileChooser;
-
+import java.io.*;
 import picasso.model.Pixmap;
 import picasso.util.FileCommand;
+import picasso.view.Frame;
+
 
 /**
  * Open the chosen image file and display in the Pixmap target.
@@ -23,18 +25,27 @@ public class Reader extends FileCommand<Pixmap> {
 	 * Displays the image file on the given target.
 	 */
 	public void execute(Pixmap target) {
-		String fileName = getFileName();
-		System.out.println(fileName);
-	    int index = fileName.lastIndexOf('.');
-	    String extension = fileName.substring( index+1);
-	    System.out.println(extension);
-		if (fileName != null) {
+		String fileName = getFileName();		
+		if (fileName != null) {		
+		    int index = fileName.lastIndexOf('.');
+		    String extension = fileName.substring( index+1);
 			if (extension.equals("png") || extension.equals("jpg")) {
-				System.out.println("sucess");
 				target.read(fileName);
 			}
 			else if (extension.equals("exp")) {
-				System.out.println();
+				try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+					String line;					
+					while ((line = br.readLine()) != null) {
+					    if (line.contains("//")) {
+					      continue;
+					    }
+					    Frame.getInput().setText(line);
+					    }
+
+				} 
+				catch (IOException e) {
+				e.printStackTrace();
+				}			
 			}
 		}
 	}

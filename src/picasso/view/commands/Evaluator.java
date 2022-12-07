@@ -3,6 +3,8 @@ package picasso.view.commands;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JTextField;
+
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
@@ -56,9 +58,9 @@ public class Evaluator implements Command<Pixmap> {
 
 		// String test = "floor(y)";
 		//String test = "x + y";
-		String str = Frame.getInput();
+		String text = Frame.getInput().getText();
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(str);
+		return expTreeGen.makeExpression(text);
 
 		// return new Multiply( new X(), new Y() );
 	}

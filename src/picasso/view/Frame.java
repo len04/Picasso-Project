@@ -2,11 +2,8 @@ package picasso.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
 
 import picasso.model.Pixmap;
 import picasso.util.ThreadedCommand;
@@ -44,7 +41,7 @@ public class Frame extends JFrame {
 		commands.add("Open", new Reader());
 		commands.add(inputLabel);
 		commands.add(inputField);
-		commands.add("evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
+		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
 		
 		
@@ -52,10 +49,9 @@ public class Frame extends JFrame {
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
 		pack();
-	
 	}
 
-	public static String getInput() {
-		return inputField.getText();
+	public static JTextField getInput() {
+		return inputField;
 	}
 }
