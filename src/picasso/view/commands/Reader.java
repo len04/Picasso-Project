@@ -36,7 +36,7 @@ public class Reader extends FileCommand<Pixmap> {
 				try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 					String line;					
 					while ((line = br.readLine()) != null) {
-					    if (line.contains("//")) {
+					    if (line.startsWith("//")) {
 					      continue;
 					    }
 					    Frame.getInput().setText(line);
