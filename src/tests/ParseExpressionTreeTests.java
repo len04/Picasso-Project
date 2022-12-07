@@ -93,10 +93,10 @@ public class ParseExpressionTreeTests {
 	@Test
 	public void absoluteFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("abs( x )");
-		assertEquals(new Absolute(new X()), e);
+		assertEquals(new AbsoluteValue(new X()), e);
 
 		e = parser.makeExpression("abs( x + y )");
-		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
+		assertEquals(new AbsoluteValue(new Addition(new X(), new Y())), e);
 	}
 
 	@Test
