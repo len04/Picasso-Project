@@ -37,25 +37,16 @@ public class Frame extends JFrame {
 		
 		JLabel inputLabel = new JLabel ("Enter expression: ");
 		inputField = new JTextField(10);
-		JButton evaluate = new JButton("Evaluate");		
+		// JButton evaluate = new JButton("Evaluate");		
 		
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
 		commands.add("Open", new Reader());
 		commands.add(inputLabel);
 		commands.add(inputField);
-		commands.add(evaluate);
+		commands.add("evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
 		
-
-		evaluate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ThreadedCommand<Pixmap> action = new ThreadedCommand<Pixmap>(canvas, new Evaluator());									
-				action.execute(canvas.getPixmap());
-				canvas.refresh();
-				// inputField.setText("");
-				}
-		});
 		
 		// add our container to Frame and show it
 		getContentPane().add(canvas, BorderLayout.CENTER);
