@@ -39,5 +39,9 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 		idToExpression.put(id, new Variable(id));
 		return null;
 	}
+	
+	public static Map<String, ExpressionTreeNode> getID() {
+		return idToExpression;
+	}
 
 }

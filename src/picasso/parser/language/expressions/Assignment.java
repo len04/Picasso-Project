@@ -2,6 +2,9 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 
+import java.util.Map;
+
+import picasso.parser.IdentifierAnalyzer;
 /**
  * Represents the assignment operation in the Picasso language.
  * 
@@ -31,8 +34,10 @@ public class Assignment extends BinaryOperator {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		param1 = param2;
+		Map<String, ExpressionTreeNode> id = IdentifierAnalyzer.getID();
+		String strParam = param1.toString();
 		RGBColor result = param2.evaluate(x, y);
+		id.put(strParam, new Variable(strParam, result));		
 		double red = result.getRed();
 		double green = result.getGreen();
 		double blue = result.getBlue();
