@@ -143,6 +143,20 @@ public class ParseExpressionTreeTests {
 		e = parser.makeExpression("( x + (y + [ 1, 1, 1] ) )");
 		assertEquals(new Addition(new X(), new Addition(new Y(), new RGBColor(1, 1, 1))), e);
 	}
+	
+	@Test
+	public void orderOfoperationsExpressionTests() {
+		ExpressionTreeNode e = parser.makeExpression("x + y * [ -.51, 0, 1]");
+		assertEquals(new Addition(new X(), (new Multiplication(new Y(), new RGBColor(-.51, 0, 1)))), e);
+		
+		// no spaces!
+		ExpressionTreeNode e1 = parser.makeExpression("x+y*[ -.51, 0, 1]");
+		assertEquals(new Addition(new X(), (new Multiplication(new Y(), new RGBColor(-.51, 0, 1)))), e1);
+		
+		e1 = parser.makeExpression("x * (y + [1, .3, -1])");
+		assertEquals(new Multiplication(new X(), (new Addition(new Y(), new RGBColor(1, .3, -1)))), e1);
+		
+	}
 
 	@Test
 	public void floorFunctionTests() {
