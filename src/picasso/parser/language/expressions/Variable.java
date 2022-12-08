@@ -19,7 +19,13 @@ public class Variable extends ExpressionTreeNode {
 
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		return new RGBColor(RGB.getRed(), RGB.getGreen(), RGB.getBlue());		
+		RGBColor result = super.evaluate(x, y);		
+		double red = result.getRed();
+		double green = result.getGreen();
+		double blue = result.getBlue();
+
+		return new RGBColor(red, green, blue);
+		//return new RGBColor(RGB.getRed(), RGB.getGreen(), RGB.getBlue());		
 	}
 
 	public String getName() {

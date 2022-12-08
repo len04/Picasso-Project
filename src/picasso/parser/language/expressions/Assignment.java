@@ -31,6 +31,7 @@ public class Assignment extends BinaryOperator {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
+		param1 = param2;
 		RGBColor result = param2.evaluate(x, y);
 		double red = result.getRed();
 		double green = result.getGreen();
