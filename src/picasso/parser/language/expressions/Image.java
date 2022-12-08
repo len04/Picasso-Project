@@ -21,13 +21,13 @@ public class Image extends ExpressionTreeNode {
 	 * 
 	 * @param imageName the string name of the image file, must be in the images folder
 	 */
-	private String imageName;
+	private String name;
 	private BufferedImage b_image;
 
 	public Image(String imageName) {
 		try {
-			this.imageName = imageName;
-			this.b_image = ImageIO.read(new File("images/"+ imageName));
+			this.name = imageName;
+			this.b_image = ImageIO.read(new File("images/"+ name));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
