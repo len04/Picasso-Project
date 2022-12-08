@@ -52,8 +52,6 @@ public class TokenFactory {
 
 				return ct;
 			}
-			
-			// TODO: Handle quoted strings
 				
 			// Others?
 

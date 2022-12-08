@@ -30,6 +30,7 @@ public class Image extends ExpressionTreeNode {
 			this.b_image = ImageIO.read(new File("images/"+ name));
 		} catch (IOException e) {
 			e.printStackTrace();
+			this.b_image = null;
 		}
 	}
 	
@@ -45,10 +46,15 @@ public class Image extends ExpressionTreeNode {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		int x_coord = scaleCoord(x, b_image.getWidth());
-		int y_coord = scaleCoord(y, b_image.getWidth());
-		
-		return new RGBColor(new Color(b_image.getRGB(x_coord, y_coord)));
+		if (b_image == null) {
+			return new RGBColor(-1,-1,-1);
+		}
+		else {
+			int x_coord = scaleCoord(x, b_image.getWidth());
+			int y_coord = scaleCoord(y, b_image.getWidth());
+			
+			return new RGBColor(new Color(b_image.getRGB(x_coord, y_coord)));
+		}
 	}
 
 }
