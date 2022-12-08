@@ -10,6 +10,9 @@ import picasso.parser.language.ExpressionTreeNode;
  */
 public class Assignment extends BinaryOperator {
 
+
+	private RGBColor result;
+
 	/**
 	 * Create a assignment expression that takes as two parameters the given expression
 	 * 
@@ -29,12 +32,15 @@ public class Assignment extends BinaryOperator {
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param2.evaluate(x, y);
-		
 		double red = result.getRed();
 		double green = result.getGreen();
 		double blue = result.getBlue();
 
 		return new RGBColor(red, green, blue);
 	}
-
+	
+	public RGBColor getResult() {
+		RGBColor x = this.result;
+		return x;
+	}
 }

@@ -11,6 +11,7 @@ import picasso.parser.language.ExpressionTreeNode;
 public class Variable extends ExpressionTreeNode {
 
 	private String name;
+	// RGBColor RGB = res.getVar();
 
 	public Variable(String name) {
 		this.name = name;
@@ -18,9 +19,7 @@ public class Variable extends ExpressionTreeNode {
 
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		// TODO Auto-generated method stub
-		// Should be set to some value using assignment.
-		return new RGBColor(0, 0, 0);		
+		return new RGBColor(RGB.getRed(), RGB.getGreen(), RGB.getBlue());		
 	}
 
 	public String getName() {
