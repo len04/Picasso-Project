@@ -34,7 +34,7 @@ public class Assignment extends BinaryOperator {
 		double green = result.getGreen();
 		double blue = result.getBlue();
 
-		return new RGBColor(1, 1, 1);
+		return new RGBColor(red, green, blue);
 	}
 
 }
