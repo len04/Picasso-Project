@@ -1,5 +1,5 @@
 package picasso.parser;
-import picasso.view.Frame;
+
 /**
  * Describe an exception that occurred during parsing.
  * 
@@ -11,7 +11,6 @@ public class ParseException extends RuntimeException {
 
 	public ParseException(String message) {
 		super("ParseException: " + message);
-		Frame.setErrorField(message);
 	}
 
 }
