@@ -20,7 +20,7 @@ public class Variable extends ExpressionTreeNode {
 	public RGBColor evaluate(double x, double y) {
 		// TODO Auto-generated method stub
 		// Should be set to some value using assignment.
-		return null;
+		return new RGBColor(0, 0, 0);		
 	}
 
 	public String getName() {
