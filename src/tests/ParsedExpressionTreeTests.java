@@ -211,7 +211,7 @@ public class ParsedExpressionTreeTests {
 		e = parser.makeExpression("clamp( x + y )");
 		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
 	}
-	
+
 	@Test
 	public void wrapFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("wrap( x )");
@@ -224,13 +224,14 @@ public class ParsedExpressionTreeTests {
 	@Test
 	public void ImageClipTests() {
 		ExpressionTreeNode e = parser.makeExpression("ImageClip(\"vortex.jpg\", x, y)");
-		//TODO
-//		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
+		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
 	}
 	
 	@Test
 	public void assignmentTests() {
 		ExpressionTreeNode e = parser.makeExpression("f = floor(x)");
-		assertEquals( new Assignment( new Variable("f"), ( new Floor(new X() )), e ) );
+		String f = "f";
+		Assignment result = new Assignment(f, new Floor(new X()));
+		assertEquals(result, e);		
 	}	
 }
