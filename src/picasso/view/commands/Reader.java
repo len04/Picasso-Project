@@ -32,13 +32,10 @@ public class Reader extends FileCommand<Pixmap> {
 			if (extension.equals("png") || extension.equals("jpg")) {
 				target.read(fileName);
 			}
-			else if (extension.equals("exp")) {
+			else {
 				try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 					String line;					
 					while ((line = br.readLine()) != null) {
-					    if (line.startsWith("//")) {
-					      continue;
-					    }
 					    Frame.getInput().setText(line);
 					    }
 
