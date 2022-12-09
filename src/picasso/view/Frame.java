@@ -40,6 +40,7 @@ public class Frame extends JFrame {
 		JLabel inputLabel = new JLabel ("Enter expression: ");
 		errorField = new JTextField (25);
 		inputField = new JTextField(20);	
+		errorField.setEditable(false);
 		// JButton evaluate = new JButton("Evaluate");		
 		
 		// add commands to test here
