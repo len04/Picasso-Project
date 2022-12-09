@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import picasso.model.Pixmap;
 import picasso.util.Command;
 import picasso.util.NamedCommand;
+import picasso.view.Frame;
 
 /**
  * The collection of commands represented as buttons that apply to the active
@@ -41,6 +42,8 @@ public class ButtonPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				action.execute(myView.getPixmap());
 				myView.refresh();
+				Frame.errorField.setText("");
+
 			}
 		});
 		add(button);
