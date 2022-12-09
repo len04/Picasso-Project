@@ -19,6 +19,11 @@ import picasso.view.commands.*;
 public class Frame extends JFrame {
 	private Canvas canvas;
 	private static JTextField inputField;	
+	public static JTextField errorField;
+
+	public static void setErrorField(String s) {
+		errorField.setText(s);
+	}
 	
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -31,9 +36,10 @@ public class Frame extends JFrame {
 		JTextField newTitle = new JTextField("Champions");		
 		this.setTitle(newTitle.getText());		
 		
-		
+		JLabel errorLabel = new JLabel("Error: ");
 		JLabel inputLabel = new JLabel ("Enter expression: ");
-		inputField = new JTextField(10);
+		errorField = new JTextField (25);
+		inputField = new JTextField(20);	
 		// JButton evaluate = new JButton("Evaluate");		
 		
 		// add commands to test here
@@ -43,6 +49,9 @@ public class Frame extends JFrame {
 		commands.add(inputField);
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
+		commands.add(errorLabel);
+		commands.add(errorField);
+		setErrorField("");
 		
 		
 		// add our container to Frame and show it
@@ -54,4 +63,9 @@ public class Frame extends JFrame {
 	public static JTextField getInput() {
 		return inputField;
 	}
+
+	public static JTextField getErrorField() {
+		return errorField;
+	}
 }
+
