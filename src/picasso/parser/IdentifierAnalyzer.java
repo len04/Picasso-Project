@@ -30,14 +30,13 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		IdentifierToken t = (IdentifierToken) tokens.pop();
-		String id = t.getName();
-		ExpressionTreeNode mapped = idToExpression.get(id);
-		// System.out.println(mapped);		
+		String idString = t.getName();
+		ExpressionTreeNode mapped = idToExpression.get(idString);
 		if (mapped != null) {
 			return mapped;
 		}
-		idToExpression.put(id, new Variable(id));
-		return null;
+		idToExpression.put(idString, new Variable(idString));
+		return idToExpression.get(idString);
 	}
 	
 	public static Map<String, ExpressionTreeNode> getID() {
