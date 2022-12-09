@@ -83,6 +83,15 @@ public class TokenizerTest {
 			tokens = tokenizer.parseTokens(expression);
 		});
 	}
+	
+//	@Test
+//	public void testQuotedStringImage() {
+//		String expression = "vortex.py";
+//
+//		assertThrows(ParseException.class, () -> {
+//			tokens = tokenizer.parseTokens(expression);
+//		});
+//	}
 
 	@Test
 	public void testTokenizeBasicFunctionExpression() {
@@ -113,6 +122,14 @@ public class TokenizerTest {
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression5 = "wrap(x)";
+		tokens = tokenizer.parseTokens(expression5);
+		assertEquals(new WrapToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
  	}
 		
 	
@@ -125,6 +142,21 @@ public class TokenizerTest {
 		expression = "sin(perlinColor(x, y))";
 		tokens = tokenizer.parseTokens(expression);
 		// TODO: Check the tokens...
+	}
+		
+	@Test
+	public void testImageManipulationFunction() {
+		String expression = "ImageClip(\"vortex.jpg\", x, y)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new ImageClipToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new ImageToken("vortex.jpg"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new CommaToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new RightParenToken(), tokens.get(7));
+
 	}
 	
 	@Test
