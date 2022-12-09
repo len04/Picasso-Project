@@ -21,9 +21,9 @@ public class ExpressionTreeGenerator {
 
 	// TODO: Do these belong here?
 	private static final int CONSTANT = 0;
-	private static final int GROUPING = 1; // parentheses
-	private static final int ADD_OR_SUBTRACT = 2;
-	private static final int MULTIPLY_OR_DIVIDE = 3;
+	private static final int ADD_OR_SUBTRACT = 1;
+	private static final int MULTIPLY_OR_DIVIDE = 2;
+	private static final int EXPONENTIATE = 3;
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
@@ -85,6 +85,8 @@ public class ExpressionTreeGenerator {
 			if (token instanceof NumberToken) {
 				postfixResult.push(token);
 			} else if (token instanceof ColorToken) {
+				postfixResult.push(token);
+			} else if (token instanceof ImageToken) {
 				postfixResult.push(token);
 			} else if (token instanceof IdentifierToken) {
 				postfixResult.push(token);
@@ -185,13 +187,15 @@ public class ExpressionTreeGenerator {
 	 */
 	private int orderOfOperation(Token token) {
 
-		// TODO: Need to finish with other operators.
-
 		// TODO: DISCUSS: Is it better to have a method in the OperatorToken
 		// class that gives the order of operation?
 
-		if (token instanceof PlusToken)
+		if (token instanceof PlusToken || token instanceof MinusToken)
 			return ADD_OR_SUBTRACT;
+		if (token instanceof TimesToken || token instanceof ModToken)
+			return MULTIPLY_OR_DIVIDE;
+		if (token instanceof ExponentiateToken)
+			return EXPONENTIATE;
 		else
 			return CONSTANT;
 	}

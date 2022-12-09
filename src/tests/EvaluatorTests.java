@@ -172,7 +172,7 @@ public class EvaluatorTests {
 	public void testAdditionEvaluation() {
 		Addition myTree = new Addition(new X(), new Y());
 		for (int i = -1; i <= 1; i++) {
-			assertEquals(new RGBColor(i + i, i + i, i + i), myTree .evaluate(i, i));
+			assertEquals(new RGBColor(i+i, i+i, i+i), myTree.evaluate(i, i));
 			assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 0));
 			
 		}
@@ -186,5 +186,65 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(-.5, -.5, -.5), myTree.evaluate(-0.5, -1));
 		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1.2, -1));
 		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(-2, -1));
+	}
+	
+	@Test
+	public void testWrapEvaluation() {
+		Wrap myTree = new Wrap(new X());
+
+		// some straightforward tests
+		assertEquals(new RGBColor(-.5, -.5, -.5), myTree.evaluate(1.5, -1));
+		assertEquals(new RGBColor(.1, .1, .1), myTree.evaluate(.1, -1));
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(4, -1));
+		// allow precision threshold for modulo
+		assertEquals(new RGBColor(-0.3, -0.3, -0.3).getRed(), myTree.evaluate(1.7, -1).getRed(), 0.0001);
+		assertEquals(new RGBColor(.8, .8, .8).getRed(), myTree.evaluate(-3.2, -1).getRed(), 0.0001);
+
+	}
+	
+	@Test
+	public void testSubtractionEvaluation() {
+		Subtraction myTree = new Subtraction(new X(), new Y());
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i-i, i-i, i-i), myTree.evaluate(i, i));
+		}
+	}
+	
+	@Test
+	public void testMultiplicationEvaluation() {
+		Multiplication myTree = new Multiplication(new X(), new Y());
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i*i, i*i, i*i), myTree.evaluate(i, i));
+		}
+	}
+	
+	@Test
+	public void testDivisionEvaluation() {
+		Division myTree = new Division(new X(), new Y());
+		for (int i = -1; i <= 1; i++) {
+			if (i != 0) {
+				assertEquals(new RGBColor(i/i, i/i, i/i), myTree.evaluate(i, i));
+			}
+		}
+	}
+	
+	@Test
+	public void testModuloEvaluation() {
+		Modulo myTree = new Modulo(new X(), new Y());
+		for (int i = -1; i <= 1; i++) {
+			if (i != 0) {
+				assertEquals(new RGBColor(i%i, i%i, i%i), myTree.evaluate(i, i));
+			}
+		}
+	}
+	
+	//@Test
+	public void testExponentiationEvaluation() {
+		Exponentiation myTree = new Exponentiation(new X(), new Y());
+		for (int i = -1; i <= 1; i++) {
+			if (i != 0) {
+			assertEquals(new RGBColor(i^i, i^i, i^i), myTree.evaluate(i, i));
+			}
+		}
 	}
 }

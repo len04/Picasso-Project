@@ -3,18 +3,17 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the floor function in the Picasso language.
+ * Represents the addition operation in the Picasso language.
  * 
- * @author Robert C. Duvall
- * @author Sara Sprenkle
+ * @author Ngoc Le
  * 
  */
 public class Addition extends BinaryOperator {
 
 	/**
-	 * Create a floor expression that takes as a parameter the given expression
+	 * Create an addition expression that takes as two parameters the given expression
 	 * 
-	 * @param param the expression to floor
+	 * @param param the expression to addition
 	 */
 	public Addition(ExpressionTreeNode param1, ExpressionTreeNode param2) {
 		super(param1, param2);
@@ -22,19 +21,19 @@ public class Addition extends BinaryOperator {
 	}
 
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the floor of
-	 * the function's parameter.
+	 * Evaluates this expression at the given x,y point by evaluating the addition of
+	 * the operations's parameters.
 	 * 
-	 * @return the color from evaluating the floor of the expression's parameter
+	 * @return the color from evaluating the addition of the expression's parameters
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result1 = param1.evaluate(x, y);
 		RGBColor result2 = param2.evaluate(x, y);
 		
-		double red = result1.getRed()+ result2.getRed();
-		double green = result1.getGreen()+ result2.getGreen();
-		double blue = result1.getBlue()+ result2.getBlue();
+		double red = result1.getRed() + result2.getRed();
+		double green = result1.getGreen() + result2.getGreen();
+		double blue = result1.getBlue() + result2.getBlue();
 
 		return new RGBColor(red, green, blue);
 	}
