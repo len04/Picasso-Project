@@ -1,5 +1,6 @@
 package picasso.parser.language.expressions;
 
+import picasso.parser.IdentifierAnalyzer;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
@@ -11,20 +12,26 @@ import picasso.parser.language.ExpressionTreeNode;
 public class Variable extends ExpressionTreeNode {
 
 	private String name;
-
+	private ExpressionTreeNode root;
+	private RGBColor result;
+	
 	public Variable(String name) {
 		this.name = name;
+		
 	}
 
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		// TODO Auto-generated method stub
-		// Should be set to some value using assignment.
-		return null;
+		root = IdentifierAnalyzer.getID().get(name);
+		result = root.evaluate(x, y);
+		double red = result.getRed();
+		double green = result.getGreen();
+		double blue = result.getBlue();
+		return new RGBColor(red, green, blue);		
 	}
 
 	public String getName() {
 		return name;
 	}
-
+	
 }
