@@ -17,7 +17,7 @@ import picasso.parser.language.expressions.*;
  * @author Sara Sprenkle
  * 
  */
-public class ParseExpressionTreeTests {
+public class ParsedExpressionTreeTests {
 
 	private ExpressionTreeGenerator parser;
 
@@ -227,4 +227,10 @@ public class ParseExpressionTreeTests {
 		//TODO
 //		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
 	}
+	
+	@Test
+	public void assignmentTests() {
+		ExpressionTreeNode e = parser.makeExpression("f = floor(x)");
+		assertEquals( new Assignment( new Variable("f"), ( new Floor(new X() )), e ) );
+	}	
 }

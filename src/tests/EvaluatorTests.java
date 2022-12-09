@@ -243,7 +243,7 @@ public class EvaluatorTests {
 		Exponentiation myTree = new Exponentiation(new X(), new Y());
 		for (int i = -1; i <= 1; i++) {
 			if (i != 0) {
-			assertEquals(new RGBColor(i^i, i^i, i^i), myTree.evaluate(i, i));
+			assertEquals(new RGBColor(Math.pow(i, i),Math.pow(i, i),Math.pow(i, i)), myTree.evaluate(i, i));
 			}
 		}
 	}
