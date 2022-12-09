@@ -250,11 +250,13 @@ public class EvaluatorTests {
 	
 	@Test
 	public void testAssignment() {
-		ExpressionTreeNode exp = new Floor(new X());		
+		ExpressionTreeNode exp = new Floor(new X());	
 		Assignment myTree = new Assignment("f", exp);
+		Variable var = new Variable("f");				
 		for (int i = -1; i <= 1; i++) {
 			if (i != 0) {
 			assertEquals(myTree.evaluate(i, i), exp.evaluate(i, i));
+			assertEquals(var.evaluate(i, i), exp.evaluate(i, i));			
 			}
 		}
 	}	
