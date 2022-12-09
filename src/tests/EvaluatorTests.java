@@ -238,7 +238,7 @@ public class EvaluatorTests {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void testExponentiationEvaluation() {
 		Exponentiation myTree = new Exponentiation(new X(), new Y());
 		for (int i = -1; i <= 1; i++) {
@@ -247,4 +247,15 @@ public class EvaluatorTests {
 			}
 		}
 	}
+	
+	@Test
+	public void testAssignment() {
+		ExpressionTreeNode exp = new Floor(new X());		
+		Assignment myTree = new Assignment("f", exp);
+		for (int i = -1; i <= 1; i++) {
+			if (i != 0) {
+			assertEquals(myTree.evaluate(i, i), exp.evaluate(i, i));
+			}
+		}
+	}	
 }
