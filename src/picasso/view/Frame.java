@@ -42,13 +42,11 @@ public class Frame extends JFrame {
 		errorField = new JTextField (10);
 		inputField = new JTextField(10);	
 		errorField.setEditable(false);
-		// JButton evaluate = new JButton("Evaluate");
 		
         myPane = new JPanel();
         myPane.setSize(500, 200);
         myPane.setLayout(new BoxLayout(myPane, BoxLayout.Y_AXIS));  
         myPane.setVisible(true);
-        // myPane.add(new JButton("x: x"));
         
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);

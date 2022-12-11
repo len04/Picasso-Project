@@ -1,6 +1,4 @@
 package picasso.view;
-import java.awt.Dimension;
-import java.awt.Window;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
@@ -30,14 +28,9 @@ public class Adder {
 		for (String key : VarToExp.keySet()) { 
 		    String value = VarToExp.get(key);
 	        JButton button = new JButton(key + ": " + value);
-	        // button.setPreferredSize(new Dimension(100, 100));
 	        panel.add(button);
 	    }
 		panel.revalidate();
 		panel.repaint();
-      // JScrollPane scrollPane = new JScrollPane(panel);
-      // panel.getRootPane().add(scrollPane);			    
-			    // Frame.getMyPane().add(value + ":" + exp);
-		      // System.out.println(key + " " + value);	
 		      }
 }
