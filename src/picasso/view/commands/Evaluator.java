@@ -3,8 +3,6 @@ package picasso.view.commands;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JTextField;
-
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;

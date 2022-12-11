@@ -20,6 +20,7 @@ public class Frame extends JFrame {
 	private Canvas canvas;
 	private static JTextField inputField;	
 	public static JTextField errorField;
+	private static JPanel myPane;
 
 	public static void setErrorField(String s) {
 		errorField.setText(s);
@@ -38,11 +39,17 @@ public class Frame extends JFrame {
 		
 		JLabel errorLabel = new JLabel("Error: ");
 		JLabel inputLabel = new JLabel ("Enter expression: ");
-		errorField = new JTextField (25);
-		inputField = new JTextField(20);	
+		errorField = new JTextField (10);
+		inputField = new JTextField(10);	
 		errorField.setEditable(false);
-		// JButton evaluate = new JButton("Evaluate");		
+		// JButton evaluate = new JButton("Evaluate");
 		
+        myPane = new JPanel();
+        myPane.setSize(500, 200);
+        myPane.setLayout(new BoxLayout(myPane, BoxLayout.Y_AXIS));  
+        myPane.setVisible(true);
+        // myPane.add(new JButton("x: x"));
+        
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
 		commands.add("Open", new Reader());
@@ -54,10 +61,10 @@ public class Frame extends JFrame {
 		commands.add(errorField);
 		setErrorField("");
 		
-		
 		// add our container to Frame and show it
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
+		getContentPane().add(myPane, BorderLayout.EAST);
 		pack();
 	}
 
@@ -67,6 +74,10 @@ public class Frame extends JFrame {
 
 	public static JTextField getErrorField() {
 		return errorField;
+	}
+
+	public static JPanel getMyPane() {
+		return myPane;
 	}
 }
 
