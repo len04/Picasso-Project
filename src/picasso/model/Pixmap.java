@@ -76,7 +76,7 @@ public class Pixmap {
 	public Pixmap(Pixmap other) {
 		myFileName = other.myFileName;
 		mySize = other.getSize();
-		myImage = copyImage(mySize, mySize, other.myImage);
+		myImage = copyImage(mySize, mySize, other.getMyImage());
 	}
 
 	/**
@@ -134,14 +134,14 @@ public class Pixmap {
 	 */
 	public Color getColor(int x, int y) {
 		if (isInBounds(x, y))
-			return new Color(myImage.getRGB(x, y));
+			return new Color(getMyImage().getRGB(x, y));
 		else
 			return DEFAULT_COLOR;
 	}
 
 	public void setColor(int x, int y, Color value) {
 		if (isInBounds(x, y)) {
-			myImage.setRGB(x, y, value.getRGB());
+			getMyImage().setRGB(x, y, value.getRGB());
 		}
 	}
 
@@ -159,10 +159,10 @@ public class Pixmap {
 		if (width != mySize.width || height != mySize.height) {
 			Dimension newSize = new Dimension(width, height);
 			if (width > mySize.width || height > mySize.height) {
-				myImage = copyImage(mySize, newSize, myImage);
+				myImage = copyImage(mySize, newSize, getMyImage());
 			} else {
 				// TODO: BUGBUG: scale image down instead?
-				myImage = myImage.getSubimage(0, 0, width, height);
+				myImage = getMyImage().getSubimage(0, 0, width, height);
 			}
 			mySize = newSize;
 		}
@@ -177,7 +177,7 @@ public class Pixmap {
 		try {
 			myFileName = fileName;
 			myImage = ImageIO.read(new File(myFileName));
-			mySize = new Dimension(myImage.getWidth(), myImage.getHeight());
+			mySize = new Dimension(getMyImage().getWidth(), getMyImage().getHeight());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -190,14 +190,14 @@ public class Pixmap {
 	 */
 	public void write(String fileName) {
 		try {
-			ImageIO.write(myImage, "jpg", new File(fileName));
+			ImageIO.write(getMyImage(), "jpg", new File(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void paint(Graphics pen) {
-		pen.drawImage(myImage, 0, 0, mySize.width, mySize.height, null);
+		pen.drawImage(getMyImage(), 0, 0, mySize.width, mySize.height, null);
 	}
 
 	private void createImage(int width, int height, Color color) {
@@ -213,5 +213,9 @@ public class Pixmap {
 		BufferedImage result = new BufferedImage(to.width, to.height, BufferedImage.TYPE_INT_RGB);
 		result.setRGB(0, 0, from.width, from.height, data, 0, from.width);
 		return result;
+	}
+
+	public BufferedImage getMyImage() {
+		return myImage;
 	}
 }

@@ -2,8 +2,10 @@ package picasso.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,6 +83,9 @@ public class Frame extends JFrame {
 		    String value = VarToExp.get(key);
 	        JButton button = new JButton(key + " = " + value);
 	        myPane.add(button);
+	        BufferedImage img = canvas.getPixmap().getMyImage();
+	        Image newimg = img.getScaledInstance( 25, 25,  java.awt.Image.SCALE_SMOOTH) ;  	        
+	        button.setIcon(new ImageIcon(newimg));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					inputField.setText(button.getText());
