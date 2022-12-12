@@ -2,6 +2,10 @@ package picasso.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.*;
 
@@ -17,10 +21,12 @@ import picasso.view.commands.*;
  */
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
-	private Canvas canvas;
+	private static Canvas canvas;
 	private static JTextField inputField;	
 	public static JTextField errorField;
 	private static JPanel myPane;
+	private static Map<String, String> VarToExp = new HashMap<String, String>();	
+	private static JButton Evaluate; 
 
 	public static void setErrorField(String s) {
 		errorField.setText(s);
@@ -32,7 +38,7 @@ public class Frame extends JFrame {
 		// create GUI components
 		canvas = new Canvas(this);
 		canvas.setSize(size);
-	
+		
 		// changing title of window
 		JTextField newTitle = new JTextField("Champions");		
 		this.setTitle(newTitle.getText());		
@@ -53,7 +59,7 @@ public class Frame extends JFrame {
 		commands.add("Open", new Reader());
 		commands.add(inputLabel);
 		commands.add(inputField);
-		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
+		Evaluate = commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
 		commands.add(errorLabel);
 		commands.add(errorField);
@@ -64,6 +70,26 @@ public class Frame extends JFrame {
 		getContentPane().add(commands, BorderLayout.NORTH);
 		getContentPane().add(myPane, BorderLayout.EAST);
 		pack();
+	}
+	
+	public static void Adder(String name) {
+		String text = inputField.getText();
+		String exp = text.substring(text.lastIndexOf("=") + 1);
+		VarToExp.put(name, exp);
+		myPane.removeAll();
+		for (String key : VarToExp.keySet()) { 
+		    String value = VarToExp.get(key);
+	        JButton button = new JButton(key + " = " + value);
+	        myPane.add(button);
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					inputField.setText(button.getText());
+					Evaluate.doClick();
+					}
+				});
+		}
+		myPane.revalidate();
+		myPane.repaint();
 	}
 
 	public static JTextField getInput() {
