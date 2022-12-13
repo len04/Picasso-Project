@@ -78,9 +78,9 @@ public class Frame extends JFrame {
 		int index = text.lastIndexOf("=");
 		String exp = text.substring( index + 1);
 		String name = text.substring(0, index);
-//		if (VarToExp.containsKey(name)) {
-//			removeButton(name + "=" + exp);
-//		}
+		if (VarToExp.containsKey(name)) {
+			removeButton(name + "=" + exp);
+		}
 		VarToExp.put(name, exp);
 		JButton button = new JButton(name + "=" + exp);	
 		myPane.add(button);
