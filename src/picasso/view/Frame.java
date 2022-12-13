@@ -79,6 +79,9 @@ public class Frame extends JFrame {
 		String exp = text.substring( index + 1);
 		String name = text.substring(0, index);
 		if (VarToExp.containsKey(name)) {
+			if (VarToExp.get(name) == exp) {
+				return;
+			}
 			removeButton(name + "=" + exp);
 		}
 		VarToExp.put(name, exp);
@@ -90,7 +93,6 @@ public class Frame extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inputField.setText(button.getText());
-				Evaluate.doClick();
 			}
 		});
 		myPane.revalidate();
@@ -101,13 +103,10 @@ public class Frame extends JFrame {
 		System.out.println("test");		
 		Component[] components = myPane.getComponents();
 		for (Component component : components) {
-			 if (component instanceof JButton) {
-			        JButton button = (JButton) component;	
 			String text = ((JButton) component).getText();
 			System.out.println(text);
-			if (text.equals(string)) {
+			if (text.startsWith(string.substring(0, 1))) {
 				myPane.remove(component);
-			}
 		}
 	}
 }
