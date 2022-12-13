@@ -33,8 +33,12 @@ public class Evaluator implements Command<Pixmap> {
 				double evalX = imageToDomainScale(imageX, size.width);
 				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 				target.setColor(imageX, imageY, pixelColor);
+
 			}
 		}
+		if (Frame.getInput().getText().contains("=")) {
+			Frame.Adder();
+		}		
 	}
 
 	/**

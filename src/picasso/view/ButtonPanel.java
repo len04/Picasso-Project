@@ -41,8 +41,8 @@ public class ButtonPanel extends JPanel {
 		JButton button = new JButton(buttonText);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				action.execute(myView.getPixmap());
-				myView.refresh();
+				action.execute(myView.getPixmap());			
+				myView.refresh();			
 				Frame.errorField.setText("");
 
 			}

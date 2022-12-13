@@ -62,6 +62,7 @@ public class Frame extends JFrame {
 		commands.add(inputLabel);
 		commands.add(inputField);
 		Evaluate = commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
+		
 		commands.add("Save", new Writer());
 		commands.add(errorLabel);
 		commands.add(errorField);
@@ -74,9 +75,11 @@ public class Frame extends JFrame {
 		pack();
 	}
 	
-	public static void Adder(String name) {
+	public static void Adder() {
 		String text = inputField.getText();
-		String exp = text.substring(text.lastIndexOf("=") + 1);
+		int index = text.lastIndexOf("=");
+		String exp = text.substring( index + 1);
+		String name = text.substring(0, index);		
 		VarToExp.put(name, exp);
 		myPane.removeAll();
 		for (String key : VarToExp.keySet()) { 
