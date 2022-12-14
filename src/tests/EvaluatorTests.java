@@ -173,8 +173,6 @@ public class EvaluatorTests {
 		Addition myTree = new Addition(new X(), new Y());
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(i+i, i+i, i+i), myTree.evaluate(i, i));
-			assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 0));
-			
 		}
 	}
 	
@@ -249,7 +247,7 @@ public class EvaluatorTests {
 	}
 	
 	@Test
-	public void testAssignment() {
+	public void testAssignmentEvaluation() {
 		ExpressionTreeNode exp = new Floor(new X());	
 		Assignment myTree = new Assignment("f", exp);
 		Variable var = new Variable("f");				
