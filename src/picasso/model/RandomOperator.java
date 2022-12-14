@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class RandomOperator {
 
-    static String[] operators = {"+","-","*","/","%"};
+    static String[] operators = {"+","-","*","/"};
     
     public static String RandomOp(){
 

@@ -4,7 +4,9 @@ public class Randomize {
 
     static int count = 0;
     static int maxIterations = 35;
-    static int iterations = (int)(Math.random()*(maxIterations+1));
+    static int minIterations = 5;
+    static int iterations = (int)(Math.random()*(maxIterations-minIterations+1)+minIterations);
+    
 
     public static String rand(){
         while(count < iterations){
@@ -14,6 +16,7 @@ public class Randomize {
         count = 0;
         String temp = result;
         result = "";
+        iterations = (int)(Math.random()*(maxIterations-minIterations+1)+minIterations);
         return temp;
     }
     static String result = "";
