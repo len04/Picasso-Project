@@ -38,7 +38,7 @@ public class Frame extends JFrame {
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		// myPane.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "downAction");
-		
+
 		// create GUI components
 		canvas = new Canvas(this);
 		canvas.setSize(size);
@@ -57,7 +57,7 @@ public class Frame extends JFrame {
 		myPane.setSize(500, 200);
 		myPane.setLayout(new BoxLayout(myPane, BoxLayout.Y_AXIS));  
 		myPane.setVisible(true);
-		
+
 		upAction = new UpAction();
 		downAction = new DownAction();
 		canvas.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "upAction");
@@ -82,9 +82,9 @@ public class Frame extends JFrame {
 		getContentPane().add(commands, BorderLayout.NORTH);
 		getContentPane().add(myPane, BorderLayout.EAST);
 		pack();		
-	
+
 		// this.addKeyListener(this);
-		
+
 	}
 
 	public static void Adder() {
@@ -128,44 +128,48 @@ public class Frame extends JFrame {
 		}
 	}
 
-//	public void keyPressed (KeyEvent e) {
-//        int c = e.getKeyCode();
-//        if (c==KeyEvent.VK_UP) {
-//        	System.out.println("UP");
-//			clicked -= 1;        	
-//        	JButton upButton = buttons.get(clicked);
-//			inputField.setText(upButton.getText());
-//			Evaluate.doClick();  
-//			} 
-//        else if(c==KeyEvent.VK_DOWN) {          
-//        	System.out.println("DOWN");		        	
-//			clicked += 1;        	
-//        	JButton  upButton = buttons.get(clicked);
-//			inputField.setText(upButton.getText());
-//			Evaluate.doClick();  
-//			}
-//    	}
+	//	public void keyPressed (KeyEvent e) {
+	//        int c = e.getKeyCode();
+	//        if (c==KeyEvent.VK_UP) {
+	//        	System.out.println("UP");
+	//			clicked -= 1;        	
+	//        	JButton upButton = buttons.get(clicked);
+	//			inputField.setText(upButton.getText());
+	//			Evaluate.doClick();  
+	//			} 
+	//        else if(c==KeyEvent.VK_DOWN) {          
+	//        	System.out.println("DOWN");		        	
+	//			clicked += 1;        	
+	//        	JButton  upButton = buttons.get(clicked);
+	//			inputField.setText(upButton.getText());
+	//			Evaluate.doClick();  
+	//			}
+	//    	}
 	private class DownAction extends AbstractAction {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-        	System.out.println("DOWN");	
-        	System.out.println("DOWN");		        	
-			clicked += 1;        	
-        	JButton  upButton = buttons.get(clicked);
-			inputField.setText(upButton.getText());
-			Evaluate.doClick();          	
+			System.out.println("DOWN");	
+			if (clicked < buttons.size())
+			{
+				clicked += 1;        	
+				JButton  upButton = buttons.get(clicked);
+				inputField.setText(upButton.getText());
+				Evaluate.doClick();          	
+			}
 		}
 	}
-	
+
 	private class UpAction extends AbstractAction {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-        	System.out.println("UP");
-			clicked -= 1;        	
-        	JButton upButton = buttons.get(clicked);
-			inputField.setText(upButton.getText());
-			Evaluate.doClick();         	
-			
+			System.out.println("UP");
+			if (clicked > 0) { 
+				clicked -= 1;
+				JButton upButton = buttons.get(clicked);
+				inputField.setText(upButton.getText());
+				Evaluate.doClick();   
+			}
+
 		}
 	}
 
@@ -181,6 +185,4 @@ public class Frame extends JFrame {
 		return myPane;
 	}
 
-
 }
-
