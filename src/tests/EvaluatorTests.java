@@ -19,12 +19,15 @@ import picasso.parser.language.expressions.*;
  * 
  */
 public class EvaluatorTests {
+	
+	private ExpressionTreeGenerator parser;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
+		parser = new ExpressionTreeGenerator();
 	}
 
 	@Test
@@ -249,15 +252,55 @@ public class EvaluatorTests {
 	}
 	
 	@Test
-	public void testAssignment() {
-		ExpressionTreeNode exp = new Floor(new X());	
-		Assignment myTree = new Assignment("f", exp);
-		Variable var = new Variable("f");				
+	public void testAssignmentEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("a = x + y");
+		assertEquals(new RGBColor(1, 1, 1), e.evaluate(1, 0));
+		
 		for (int i = -1; i <= 1; i++) {
-			if (i != 0) {
-			assertEquals(myTree.evaluate(i, i), exp.evaluate(i, i));
-			assertEquals(var.evaluate(i, i), exp.evaluate(i, i));			
-			}
+			assertEquals(new RGBColor(i, i, i), e.evaluate(i, 0));	
 		}
-	}	
+	}
+	
+	@Test
+	public void testRgbToYCrCbEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb(x)");
+		
+		assertEquals(new RGBColor (0, 0, 0), e.evaluate(0, 0));
+		assertEquals(new RGBColor (1.0, 9.999999999998899E-5, 9.999999999998899E-5), e.evaluate(1,1));
+	}
+	
+	@Test
+	public void testyCrCbToRGBEvaluatiton (){
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB(x)");
+		
+		assertEquals(new RGBColor (0, 0, 0), e.evaluate(0, 0));
+		assertEquals(new RGBColor (2.4021999999999997, -0.06010000000000004, 2.771), e.evaluate(1, 1));
+	}
+	
+	@Test
+	public void testInversionEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("!x");
+
+		assertEquals(new RGBColor (-1,-1,-1), e.evaluate(1, 1));
+		assertEquals(new RGBColor (0, 0, 0), e.evaluate(0, 0));
+		
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i, i, i), e.evaluate(-i, -i));	
+		}
+	}
+	
+	@Test
+	public void testPerlinColorEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("perlinColor(x,y)");
+	
+		assertEquals(new RGBColor (0.02276399999999995, -0.24566505471999994, 0.083736), e.evaluate(0, 0));	
+		assertEquals(new RGBColor (0.45749417280000004,0.09574400000000001 , 0.19672254720000015), e.evaluate(1, 1));
+	}
+	
+	@Test
+	public void testPerlinBWEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("perlinBW(x,y)");
+		assertEquals(new RGBColor (0.02276399999999995, 0.02276399999999995, 0.02276399999999995), e.evaluate(0, 0));
+		assertEquals(new RGBColor  (0.45749417280000004, 0.45749417280000004 , 0.45749417280000004), e.evaluate(1, 1));
+	}
 }

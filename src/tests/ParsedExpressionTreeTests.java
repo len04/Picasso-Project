@@ -133,6 +133,20 @@ public class ParsedExpressionTreeTests {
 		e1 = parser.makeExpression("x ^ y ^ [ -.51, 0, 1]");
 		assertEquals(new Exponentiation(new Exponentiation(new X(), new Y()), new RGBColor(-.51, 0, 1)), e1);
 	}
+	
+	@Test
+	public void inversionExpressionTests() {
+		
+		ExpressionTreeNode e = parser.makeExpression("! x");
+		assertEquals(new Inversion(new X()), e);
+		
+		// no spaces!
+		ExpressionTreeNode e1 = parser.makeExpression("!x");
+		assertEquals(new Inversion(new X()), e1);
+		
+		e1 = parser.makeExpression("!(floor(x)*y)");
+		assertEquals(new Inversion(new Multiplication(new Floor(new X()), new Y())), e1);
+	}
 
 	
 	@Test
@@ -222,9 +236,12 @@ public class ParsedExpressionTreeTests {
 	}
 	
 	@Test
-	public void ImageClipTests() {
-		ExpressionTreeNode e = parser.makeExpression("ImageClip(\"vortex.jpg\", x, y)");
+	public void imageClipFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\", x, y)");
 		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
+		
+//		e = parser.makeExpression("imageClip(\"vortex.jpg\", x+x, y )");
+//		assertEquals(new ImageClip("vortex.jpg",new Addition(new X(), new X()), new Y()), e);
 	}
 	
 	@Test
@@ -234,4 +251,52 @@ public class ParsedExpressionTreeTests {
 		Assignment result = new Assignment(f, new Floor(new X()));
 		assertEquals(result, e);		
 	}	
+	
+	@Test
+	public void RGBToYCrCbFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb( x )");
+		assertEquals(new RgbToYCrCb(new X()), e);
+		
+		e = parser.makeExpression("rgbToYCrCb( y )");
+		assertEquals(new RgbToYCrCb(new Y()), e);
+		
+		e = parser.makeExpression("rgbToYCrCb( x * y )");
+		assertEquals(new RgbToYCrCb(new Multiplication(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void yCrCbToRGBFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB( x )");
+		assertEquals(new YCrCbToRGB(new X()), e);
+		
+		e = parser.makeExpression("yCrCbToRGB( y )");
+		assertEquals(new YCrCbToRGB(new Y()), e);
+		
+		e = parser.makeExpression("yCrCbToRGB( x + y )");
+		assertEquals(new YCrCbToRGB(new Addition(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void perlinColorFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("perlinColor( x , y )");
+		assertEquals(new PerlinColor(new X(), new Y()), e);
+		
+		e = parser.makeExpression("perlinColor( y , x )");
+		assertEquals(new PerlinColor(new Y(), new X()), e);
+		
+		e = parser.makeExpression("perlinColor( x + y, y % x )");
+		assertEquals(new PerlinColor(new Addition(new X(), new Y()), new Modulo(new Y(), new X())), e);
+	}
+	
+	@Test
+	public void perlinBWFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("perlinBW( x , y )");
+		assertEquals(new PerlinBW(new X(), new Y()), e);
+		
+		e = parser.makeExpression("perlinBW( y , x )");
+		assertEquals(new PerlinBW(new Y(), new X()), e);
+		
+		e = parser.makeExpression("perlinBW( x + y, y ^ x )");
+		assertEquals(new PerlinBW(new Addition(new X(), new Y()),new Exponentiation(new Y(), new X())), e);
+	}
 }

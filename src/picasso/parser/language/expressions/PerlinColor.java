@@ -14,7 +14,8 @@ public class PerlinColor extends BinaryOperator {
 	/**
 	 * Create an Perlin Color expression that takes as two parameters the given expression
 	 * 
-	 * @param param the expression to Perlin Color
+	 * @param param1 the expression to Perlin Color
+	 * @param param2 the expression to Perlin Color
 	 */
 	public PerlinColor(ExpressionTreeNode param1, ExpressionTreeNode param2) {
 		super(param1, param2);
