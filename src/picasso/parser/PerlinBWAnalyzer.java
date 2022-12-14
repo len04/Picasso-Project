@@ -3,11 +3,10 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Image;
-import picasso.parser.language.expressions.ImageClip;
+import picasso.parser.language.expressions.PerlinBW;
 import picasso.parser.tokens.Token;
 
-public class ImageClipAnalyzer implements SemanticAnalyzerInterface {
+public class PerlinBWAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
@@ -16,9 +15,7 @@ public class ImageClipAnalyzer implements SemanticAnalyzerInterface {
 				tokens);
 		ExpressionTreeNode param2 = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-		ExpressionTreeNode image = SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens);
-		return new ImageClip((Image) image, param2, param3);	
+		return new PerlinBW(param2, param3);	
 	}
 
 }
