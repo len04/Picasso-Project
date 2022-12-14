@@ -3,20 +3,24 @@ package picasso.model;
 public class Randomize {
 
     static int count = 0;
-    static int maxIterations = 100;
+    static int maxIterations = 35;
     static int iterations = (int)(Math.random()*(maxIterations+1));
-    public static void main(String[] args){
+
+    public static String rand(){
         while(count < iterations){
-        generateUnary();
+        generateExp();
         count++;
         }
-        System.out.println(result);
+        count = 0;
+        String temp = result;
+        result = "";
+        return temp;
     }
     static String result = "";
     static String endChar;
     static int bigExp = 0;
     
-    public static void generateUnary(){
+    public static void generateExp(){
 
         int big = (int)(Math.random()*(2));
         // used to determine if function is applied over whole expression
@@ -40,6 +44,7 @@ public class Randomize {
         return result;
     }
     
+
     
 
 }

@@ -2,10 +2,14 @@ package picasso.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Random;
 
 import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 
 import picasso.model.Pixmap;
+import picasso.model.Randomize;
 import picasso.util.ThreadedCommand;
 import picasso.view.commands.*;
 
@@ -24,6 +28,8 @@ public class Frame extends JFrame {
 	public static void setErrorField(String s) {
 		errorField.setText(s);
 	}
+
+
 	
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -42,21 +48,24 @@ public class Frame extends JFrame {
 		inputField = new JTextField(20);	
 		errorField.setEditable(false);
 		// JButton evaluate = new JButton("Evaluate");	
+
+
 		
-		JButton Randomize = new JButton("Randomize");
+
 		
 		
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
 		commands.add("Open", new Reader());
-		commands.add(Randomize);
 		commands.add(inputLabel);
 		commands.add(inputField);
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 		commands.add("Save", new Writer());
+		commands.add("Randomize", new Randomizer());
 		commands.add(errorLabel);
 		commands.add(errorField);
 		setErrorField("");
+		
 		
 		
 		// add our container to Frame and show it
@@ -67,6 +76,10 @@ public class Frame extends JFrame {
 
 	public static JTextField getInput() {
 		return inputField;
+	}
+
+	public static void setInputField(String s){
+		inputField.setText(s);
 	}
 
 	public static JTextField getErrorField() {

@@ -6,9 +6,10 @@ public class RandomFunction{
 
     public static String Random(){
 
-        x = (int)(Math.random()*(3));
+        String[] expressions = {"sin","cos","tan","wrap","clamp"};
+        x = (int)(Math.random()*(expressions.length));
 
-        String[] expressions = {"sin","cos","tan"};
+        
         return expressions[x];
         
     }

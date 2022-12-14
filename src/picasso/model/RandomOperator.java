@@ -3,13 +3,12 @@ import java.util.Arrays;
 
 public class RandomOperator {
 
-    static String[] operators = {"+","-","*","/"};
-
+    static String[] operators = {"+","-","*","/","%"};
     
     public static String RandomOp(){
 
 
-        int x = (int)(Math.random()*(4));
+        int x = (int)(Math.random()*(operators.length));
 
         return operators[x];
     }
