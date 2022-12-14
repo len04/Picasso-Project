@@ -209,6 +209,15 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("y"), tokens.get(4));
 		assertEquals(new RightParenToken(), tokens.get(5));
 	}
+	
+	@Test
+	public void testNoArgumentExpressions() {
+		String expression = "random()";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new RandomToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new RightParenToken(), tokens.get(2));
+	}
 		
 	
 	@Test
@@ -243,6 +252,17 @@ public class TokenizerTest {
 		String expression = "ImageClip(\"vortex.jpg\", x, y)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new ImageClipToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new ImageToken("vortex.jpg"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new CommaToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new RightParenToken(), tokens.get(7));
+		
+		String expression2 = "ImageWrap(\"vortex.jpg\", x, y)";
+		tokens = tokenizer.parseTokens(expression2);
+		assertEquals(new ImageWrapToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new ImageToken("vortex.jpg"), tokens.get(2));
 		assertEquals(new CommaToken(), tokens.get(3));

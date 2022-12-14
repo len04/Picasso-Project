@@ -272,12 +272,27 @@ public class ParsedExpressionTreeTests {
 	}
 	
 	@Test
+	public void randomFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("random()");
+		assertEquals(new Random(), e);
+	}
+	
+	@Test
 	public void imageClipFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\", x, y)");
 		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
 		
-//		e = parser.makeExpression("imageClip(\"vortex.jpg\", x+x, y )");
-//		assertEquals(new ImageClip("vortex.jpg",new Addition(new X(), new X()), new Y()), e);
+		ExpressionTreeNode e2 = parser.makeExpression("imageClip(\"vortex.jpg\", x+x, y )");
+		assertEquals(new ImageClip(new Image("vortex.jpg"),new Addition(new X(), new X()), new Y()), e2);
+	}
+	
+	@Test
+	public void imageWrapFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\", x, y)");
+		assertEquals(new ImageWrap(new Image("vortex.jpg"), new X(), new Y()), e);
+		
+		ExpressionTreeNode e2 = parser.makeExpression("imageWrap(\"vortex.jpg\", x+x, y )");
+		assertEquals(new ImageWrap(new Image("vortex.jpg"),new Addition(new X(), new X()), new Y()), e2);
 	}
 	
 	@Test
