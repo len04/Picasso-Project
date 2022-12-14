@@ -1,13 +1,12 @@
 package picasso.view;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+
 
 import picasso.model.Pixmap;
 import picasso.util.ThreadedCommand;
@@ -26,7 +25,11 @@ public class Frame extends JFrame {
 	public static JTextField errorField;
 	private static JPanel myPane;
 	private static Map<String, String> VarToExp = new HashMap<String, String>();	
+	private static ArrayList<JButton> buttons = new ArrayList<JButton>();
 	private static JButton Evaluate; 
+	private static int clicked;	
+	Action upAction;
+	Action downAction;
 
 	public static void setErrorField(String s) {
 		errorField.setText(s);
@@ -34,7 +37,8 @@ public class Frame extends JFrame {
 
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+		// myPane.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "downAction");
+		
 		// create GUI components
 		canvas = new Canvas(this);
 		canvas.setSize(size);
@@ -53,6 +57,13 @@ public class Frame extends JFrame {
 		myPane.setSize(500, 200);
 		myPane.setLayout(new BoxLayout(myPane, BoxLayout.Y_AXIS));  
 		myPane.setVisible(true);
+		
+		upAction = new UpAction();
+		downAction = new DownAction();
+		canvas.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "upAction");
+		canvas.getActionMap().put("upAction", upAction);	
+		canvas.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "downAction");
+		canvas.getActionMap().put("downAction", downAction);			
 
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
@@ -70,7 +81,10 @@ public class Frame extends JFrame {
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
 		getContentPane().add(myPane, BorderLayout.EAST);
-		pack();
+		pack();		
+	
+		// this.addKeyListener(this);
+		
 	}
 
 	public static void Adder() {
@@ -79,7 +93,9 @@ public class Frame extends JFrame {
 		String exp = text.substring( index + 1);
 		String name = text.substring(0, index);
 		if (VarToExp.containsKey(name)) {
-			if (VarToExp.get(name) == exp) {
+			System.out.println("TT1");
+			if (VarToExp.get(name).equals(exp)) {
+				System.out.println("TT");
 				return;
 			}
 			removeButton(name + "=" + exp);
@@ -88,29 +104,70 @@ public class Frame extends JFrame {
 		JButton button = new JButton(name + "=" + exp);	
 		myPane.add(button);
 		BufferedImage img = canvas.getPixmap().getMyImage();
-		Image newimg = img.getScaledInstance( 25, 25,  java.awt.Image.SCALE_SMOOTH) ;  	        
+		Image newimg = img.getScaledInstance( 25, 25, Image.SCALE_SMOOTH) ;  	        
 		button.setIcon(new ImageIcon(newimg));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				clicked = buttons.indexOf(button);
 				inputField.setText(button.getText());
+				Evaluate.doClick();
 			}
 		});
+		buttons.add(button);
 		myPane.revalidate();
 		myPane.repaint();
 	}
 
 	private static void removeButton(String string) {
-		System.out.println("test");		
 		Component[] components = myPane.getComponents();
 		for (Component component : components) {
 			String text = ((JButton) component).getText();
-			System.out.println(text);
 			if (text.startsWith(string.substring(0, 1))) {
 				myPane.remove(component);
+			}
 		}
 	}
-}
 
+//	public void keyPressed (KeyEvent e) {
+//        int c = e.getKeyCode();
+//        if (c==KeyEvent.VK_UP) {
+//        	System.out.println("UP");
+//			clicked -= 1;        	
+//        	JButton upButton = buttons.get(clicked);
+//			inputField.setText(upButton.getText());
+//			Evaluate.doClick();  
+//			} 
+//        else if(c==KeyEvent.VK_DOWN) {          
+//        	System.out.println("DOWN");		        	
+//			clicked += 1;        	
+//        	JButton  upButton = buttons.get(clicked);
+//			inputField.setText(upButton.getText());
+//			Evaluate.doClick();  
+//			}
+//    	}
+	private class DownAction extends AbstractAction {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+        	System.out.println("DOWN");	
+        	System.out.println("DOWN");		        	
+			clicked += 1;        	
+        	JButton  upButton = buttons.get(clicked);
+			inputField.setText(upButton.getText());
+			Evaluate.doClick();          	
+		}
+	}
+	
+	private class UpAction extends AbstractAction {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+        	System.out.println("UP");
+			clicked -= 1;        	
+        	JButton upButton = buttons.get(clicked);
+			inputField.setText(upButton.getText());
+			Evaluate.doClick();         	
+			
+		}
+	}
 
 	public static JTextField getInput() {
 		return inputField;
@@ -123,5 +180,7 @@ public class Frame extends JFrame {
 	public static JPanel getMyPane() {
 		return myPane;
 	}
+
+
 }
 
