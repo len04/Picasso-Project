@@ -2,6 +2,7 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.IdentifierAnalyzer;
+import picasso.view.*;
 /**
  * Represents the assignment operation in the Picasso language.
  * 

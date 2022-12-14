@@ -35,18 +35,20 @@ public class ButtonPanel extends JPanel {
 	 * 
 	 * @param buttonText the text for the button
 	 * @param action     the action associated with the new button
+	 * @return 
 	 */
-	public void add(String buttonText, final Command<Pixmap> action) {
+	public JButton add(String buttonText, final Command<Pixmap> action) {
 		JButton button = new JButton(buttonText);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				action.execute(myView.getPixmap());
-				myView.refresh();
+				action.execute(myView.getPixmap());			
+				myView.refresh();			
 				Frame.errorField.setText("");
 
 			}
 		});
 		add(button);
+		return button;
 	}
 
 	/**

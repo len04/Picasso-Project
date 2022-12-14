@@ -19,7 +19,7 @@ import picasso.parser.tokens.Token;
  */
 public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 
-	static Map<String, ExpressionTreeNode> idToExpression = new HashMap<String, ExpressionTreeNode>();
+	private static Map<String, ExpressionTreeNode> idToExpression = new HashMap<String, ExpressionTreeNode>();
 
 	static {
 		// We always have x and y defined.
@@ -40,7 +40,11 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 	}
 	
 	public static Map<String, ExpressionTreeNode> getID() {
-		return idToExpression;
+		HashMap<String, ExpressionTreeNode> Copy = new HashMap<String, ExpressionTreeNode>();
+        for (Map.Entry<String, ExpressionTreeNode> entry : idToExpression.entrySet()) {
+        	Copy.put(entry.getKey(), entry.getValue());
+        }
+		return Copy;
 	}
 
 }
