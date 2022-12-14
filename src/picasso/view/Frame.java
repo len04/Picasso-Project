@@ -37,8 +37,7 @@ public class Frame extends JFrame {
 
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		// myPane.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "downAction");
-
+		
 		// create GUI components
 		canvas = new Canvas(this);
 		canvas.setSize(size);
@@ -82,9 +81,6 @@ public class Frame extends JFrame {
 		getContentPane().add(commands, BorderLayout.NORTH);
 		getContentPane().add(myPane, BorderLayout.EAST);
 		pack();		
-
-		// this.addKeyListener(this);
-
 	}
 
 	public static void Adder() {
@@ -128,23 +124,6 @@ public class Frame extends JFrame {
 		}
 	}
 
-	//	public void keyPressed (KeyEvent e) {
-	//        int c = e.getKeyCode();
-	//        if (c==KeyEvent.VK_UP) {
-	//        	System.out.println("UP");
-	//			clicked -= 1;        	
-	//        	JButton upButton = buttons.get(clicked);
-	//			inputField.setText(upButton.getText());
-	//			Evaluate.doClick();  
-	//			} 
-	//        else if(c==KeyEvent.VK_DOWN) {          
-	//        	System.out.println("DOWN");		        	
-	//			clicked += 1;        	
-	//        	JButton  upButton = buttons.get(clicked);
-	//			inputField.setText(upButton.getText());
-	//			Evaluate.doClick();  
-	//			}
-	//    	}
 	private class DownAction extends AbstractAction {
 		@Override
 		public void actionPerformed(ActionEvent e) {
