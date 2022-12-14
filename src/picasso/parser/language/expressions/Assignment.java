@@ -2,7 +2,6 @@ package picasso.parser.language.expressions;
 
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.IdentifierAnalyzer;
-import picasso.view.*;
 /**
  * Represents the assignment operation in the Picasso language.
  * 
@@ -19,9 +18,9 @@ public class Assignment extends ExpressionTreeNode {
 	 * 
 	 * @param param the expression to equals
 	 */
-	public Assignment(String name, ExpressionTreeNode param2) {
-		this.expression = param2; 
-		IdentifierAnalyzer.getID().put(name, param2);
+	public Assignment(String name, ExpressionTreeNode param) {
+		this.expression = param; 
+		IdentifierAnalyzer.getID().put(name, param);
 	}
 
 	/**
