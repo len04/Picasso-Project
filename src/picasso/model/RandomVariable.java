@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class RandomVariable {
 
-    static String[] variables = {"x","y","x+y","x*y","x-y","x/y"};
+    static String[] variables = {"x","y","x+y","x*y","x-y","x/y","y-x","y/x"};
     
     public static String RandomVar(){
 
