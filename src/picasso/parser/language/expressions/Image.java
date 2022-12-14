@@ -56,5 +56,30 @@ public class Image extends ExpressionTreeNode {
 			return new RGBColor(new Color(b_image.getRGB(x_coord, y_coord)));
 		}
 	}
+	
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+
+		if (!(o instanceof Image)) {
+			return false;
+		}
+
+		// Make sure the objects are the same type
+
+		if (o.getClass() != this.getClass()) {
+			return false;
+		}
+
+		Image uf = (Image) o;
+
+		// check if their parameters are equal
+		if (!this.name.equals(uf.name)) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }

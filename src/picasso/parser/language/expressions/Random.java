@@ -40,4 +40,25 @@ public class Random extends ExpressionTreeNode {
 	public RGBColor evaluate(double x, double y) {
 		return new RGBColor(red, green, blue);
 	}
+
+	
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+
+		if (!(o instanceof Random)) {
+			return false;
+		}
+
+		// Make sure the objects are the same type
+
+		if (o.getClass() != this.getClass()) {
+			return false;
+		}
+
+		// no parameters to check if equal
+		
+		return true;
+	}
 }
