@@ -236,12 +236,63 @@ public class ParsedExpressionTreeTests {
 	}
 	
 	@Test
+	public void ceilFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
+		assertEquals(new Ceiling(new X()), e);
+
+		e = parser.makeExpression("ceil( x + y )");
+		assertEquals(new Ceiling(new Addition(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void atanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("atan( x )");
+		assertEquals(new ArcTangent(new X()), e);
+
+		e = parser.makeExpression("atan( x + y )");
+		assertEquals(new ArcTangent(new Addition(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void expFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("exp( x )");
+		assertEquals(new Exponential(new X()), e);
+
+		e = parser.makeExpression("exp( x + y )");
+		assertEquals(new Exponential(new Addition(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void logFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("log( x )");
+		assertEquals(new Log(new X()), e);
+
+		e = parser.makeExpression("log( x + y )");
+		assertEquals(new Log(new Addition(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void randomFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("random()");
+		assertEquals(new Random(), e);
+	}
+	
+	@Test
 	public void imageClipFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\", x, y)");
 		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
 		
-//		e = parser.makeExpression("imageClip(\"vortex.jpg\", x+x, y )");
-//		assertEquals(new ImageClip("vortex.jpg",new Addition(new X(), new X()), new Y()), e);
+		ExpressionTreeNode e2 = parser.makeExpression("imageClip(\"vortex.jpg\", x+x, y )");
+		assertEquals(new ImageClip(new Image("vortex.jpg"),new Addition(new X(), new X()), new Y()), e2);
+	}
+	
+	@Test
+	public void imageWrapFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\", x, y)");
+		assertEquals(new ImageWrap(new Image("vortex.jpg"), new X(), new Y()), e);
+		
+		ExpressionTreeNode e2 = parser.makeExpression("imageWrap(\"vortex.jpg\", x+x, y )");
+		assertEquals(new ImageWrap(new Image("vortex.jpg"),new Addition(new X(), new X()), new Y()), e2);
 	}
 	
 	@Test
