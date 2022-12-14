@@ -102,6 +102,7 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
+		
 		String expression2 = "abs(x)";
  		tokens = tokenizer.parseTokens(expression2);
  		assertEquals(new AbsToken(), tokens.get(0));
@@ -130,6 +131,48 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
+		String expression6 = "atan(x)";
+		tokens = tokenizer.parseTokens(expression6);
+		assertEquals(new AtanToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression7 = "ceil(x)";
+		tokens = tokenizer.parseTokens(expression7);
+		assertEquals(new CeilToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression8 = "exp(x)";
+		tokens = tokenizer.parseTokens(expression8);
+		assertEquals(new ExpToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression9 = "log(x)";
+		tokens = tokenizer.parseTokens(expression9);
+		assertEquals(new LogToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression10 = "sin(x)";
+		tokens = tokenizer.parseTokens(expression10);
+		assertEquals(new SinToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression11 = "tan(x)";
+		tokens = tokenizer.parseTokens(expression11);
+		assertEquals(new TanToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
  	}
 		
 	
@@ -145,7 +188,7 @@ public class TokenizerTest {
 	}
 		
 	@Test
-	public void testImageManipulationFunction() {
+	public void testImageManipulationFunctionExpression() {
 		String expression = "ImageClip(\"vortex.jpg\", x, y)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new ImageClipToken(), tokens.get(0));
