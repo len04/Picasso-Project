@@ -41,11 +41,15 @@ public class Frame extends JFrame {
 		errorField = new JTextField (25);
 		inputField = new JTextField(20);	
 		errorField.setEditable(false);
-		// JButton evaluate = new JButton("Evaluate");		
+		// JButton evaluate = new JButton("Evaluate");	
+		
+		JButton Randomize = new JButton("Randomize");
+		
 		
 		// add commands to test here
 		ButtonPanel commands = new ButtonPanel(canvas);
 		commands.add("Open", new Reader());
+		commands.add(Randomize);
 		commands.add(inputLabel);
 		commands.add(inputField);
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
