@@ -172,8 +172,8 @@ public class ParsedExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
 		assertEquals(new Cosine(new X()), e);
 
-		e = parser.makeExpression("cos( x + y )");
-		assertEquals(new Cosine(new Addition(new X(), new Y())), e);
+		e = parser.makeExpression("cos( x * y )");
+		assertEquals(new Cosine(new Multiplication(new X(), new Y())), e);
 	}
 	
 	@Test
@@ -181,8 +181,8 @@ public class ParsedExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("sin( x )");
 		assertEquals(new Sine(new X()), e);
 
-		e = parser.makeExpression("sin( x + y )");
-		assertEquals(new Sine(new Addition(new X(), new Y())), e);
+		e = parser.makeExpression("sin( x ^ y )");
+		assertEquals(new Sine(new Exponentiation(new X(), new Y())), e);
 	}
 	
 	@Test
@@ -222,7 +222,7 @@ public class ParsedExpressionTreeTests {
 	}
 	
 	@Test
-	public void ImageClipTests() {
+	public void imageClipFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("ImageClip(\"vortex.jpg\", x, y)");
 		assertEquals(new ImageClip(new Image("vortex.jpg"), new X(), new Y()), e);
 	}
@@ -233,5 +233,23 @@ public class ParsedExpressionTreeTests {
 		String f = "f";
 		Assignment result = new Assignment(f, new Floor(new X()));
 		assertEquals(result, e);		
-	}	
+	}
+	
+	@Test
+	public void rgbToYCrCbFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb( x )");
+		assertEquals(new RgbToYCrCb(new X()),e );
+
+		e = parser.makeExpression("rgbToYCrCb( x / y )");
+		assertEquals(new RgbToYCrCb(new Division(new X(), new Y())), e);
+	}
+	
+	@Test
+	public void yCrCbToRGBFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB( x )");
+		assertEquals(new YCrCbToRGB(new X()),e );
+
+		e = parser.makeExpression("yCrCbToRGB( x % y )");
+		assertEquals(new YCrCbToRGB(new Modulo(new X(), new Y())), e);
+	}
 }

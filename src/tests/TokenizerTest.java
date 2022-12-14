@@ -173,6 +173,19 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
+		String expression12 = "rgbToYCrCb(x)";
+		tokens = tokenizer.parseTokens(expression12);
+		assertEquals(new RgbToYCrCbToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+		
+		String expression13 = "yCrCbToRGB(x)";
+		tokens = tokenizer.parseTokens(expression13);
+		assertEquals(new YCrCbToRGBToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
  	}
 		
 	
@@ -201,6 +214,7 @@ public class TokenizerTest {
 		assertEquals(new RightParenToken(), tokens.get(7));
 
 	}
+	
 	
 	@Test
 	public void testTokenizeBasicOperationExpression() {
