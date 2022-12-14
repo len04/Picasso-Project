@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import picasso.parser.ParseException;
 import picasso.parser.Tokenizer;
+import picasso.parser.language.expressions.PerlinColor;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
@@ -94,7 +95,7 @@ public class TokenizerTest {
 //	}
 
 	@Test
-	public void testTokenizeBasicFunctionExpression() {
+	public void testTokenizeBasicFunctionExpressions() {
 		String expression = "floor(x)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new FloorToken(), tokens.get(0));
@@ -130,7 +131,84 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 		
- 	}
+		String expression6 = "atan(x)";
+ 		tokens = tokenizer.parseTokens(expression6);
+ 		assertEquals(new AtanToken(), tokens.get(0));
+ 		assertEquals(new LeftParenToken(), tokens.get(1));
+ 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+ 		assertEquals(new RightParenToken(), tokens.get(3));
+
+ 		String expression7 = "ceil(x)";
+ 		tokens = tokenizer.parseTokens(expression7);
+ 		assertEquals(new CeilToken(), tokens.get(0));
+ 		assertEquals(new LeftParenToken(), tokens.get(1));
+ 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+ 		assertEquals(new RightParenToken(), tokens.get(3));
+
+ 		String expression8 = "exp(x)";
+ 		tokens = tokenizer.parseTokens(expression8);
+ 		assertEquals(new ExpToken(), tokens.get(0));
+ 		assertEquals(new LeftParenToken(), tokens.get(1));
+ 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+ 		assertEquals(new RightParenToken(), tokens.get(3));
+
+ 		String expression9 = "log(x)";
+ 		tokens = tokenizer.parseTokens(expression9);
+ 		assertEquals(new LogToken(), tokens.get(0));
+ 		assertEquals(new LeftParenToken(), tokens.get(1));
+ 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+ 		assertEquals(new RightParenToken(), tokens.get(3));
+
+ 		String expression10 = "sin(x)";
+ 		tokens = tokenizer.parseTokens(expression10);
+ 		assertEquals(new SinToken(), tokens.get(0));
+ 		assertEquals(new LeftParenToken(), tokens.get(1));
+ 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+ 		assertEquals(new RightParenToken(), tokens.get(3));
+
+ 		String expression11 = "tan(x)";
+ 		tokens = tokenizer.parseTokens(expression11);
+ 		assertEquals(new TanToken(), tokens.get(0));
+ 		assertEquals(new LeftParenToken(), tokens.get(1));
+ 		assertEquals(new IdentifierToken("x"), tokens.get(2));
+ 		assertEquals(new RightParenToken(), tokens.get(3));
+ 		
+ 		String expression12 = "rgbToYCrCb(x)";
+		tokens = tokenizer.parseTokens(expression12);
+		assertEquals(new RgbToYCrCbToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+
+		String expression13 = "yCrCbToRGB(x)";
+		tokens = tokenizer.parseTokens(expression13);
+		assertEquals(new YCrCbToRGBToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+  	}		  	
+	
+	@Test
+	public void testTokenizeMultiArgumentExpressions() {
+		String expression = "perlinColor(x,y)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new PerlinColorToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));
+		
+		String expression2 = "perlinBW(x,y)";
+		tokens = tokenizer.parseTokens(expression2);
+		assertEquals(new PerlinBWToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));
+		
+	}
 		
 	
 	@Test
@@ -156,7 +234,6 @@ public class TokenizerTest {
 		assertEquals(new CommaToken(), tokens.get(5));
 		assertEquals(new IdentifierToken("y"), tokens.get(6));
 		assertEquals(new RightParenToken(), tokens.get(7));
-
 	}
 	
 	@Test
