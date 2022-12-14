@@ -215,11 +215,27 @@ public class TokenizerTest {
 	public void testTokenizeCombinedFunctionExpression() {
 		String expression = "perlinColor(floor(x), y)";
 		List<Token> tokens = tokenizer.parseTokens(expression);
-		// TODO: Check the tokens...
+		assertEquals(new PerlinColorToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new FloorToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new RightParenToken(), tokens.get(5));
+		assertEquals(new CommaToken(), tokens.get(6));
+		assertEquals(new IdentifierToken("y"), tokens.get(7));
+		assertEquals(new RightParenToken(), tokens.get(8));
 
 		expression = "sin(perlinColor(x, y))";
 		tokens = tokenizer.parseTokens(expression);
-		// TODO: Check the tokens...
+		assertEquals(new SinToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new PerlinColorToken(), tokens.get(2));
+		assertEquals(new LeftParenToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new CommaToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new RightParenToken(), tokens.get(7));
+		assertEquals(new RightParenToken(), tokens.get(8));
 	}
 		
 	@Test
@@ -274,7 +290,4 @@ public class TokenizerTest {
 		assertEquals(new ExponentiateToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 	}
-
-	// TODO: Test arithmetic (rather than function-based) expressions ...
-
 }
