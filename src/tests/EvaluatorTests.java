@@ -398,4 +398,21 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor (0.02276399999999995, 0.02276399999999995, 0.02276399999999995), e.evaluate(0, 0));
 		assertEquals(new RGBColor  (0.45749417280000004, 0.45749417280000004 , 0.45749417280000004), e.evaluate(1, 1));
 	}
+	
+	@Test
+	public void testRandomEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("random");
+
+		boolean result = true;
+
+		for (int i = -1; i <= 1; i++) {
+			RGBColor randomColor = e.evaluate(i, i);
+			if (randomColor.getRed() > 1 || randomColor.getBlue() > 1 || randomColor.getGreen() > 1
+					|| randomColor.getBlue() < -1 || randomColor.getGreen() < -1 || randomColor.getRed() < -1) {
+				result = false;
+			}
+			
+		assertTrue(result);
+		}
+	}
 }
