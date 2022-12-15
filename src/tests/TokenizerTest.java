@@ -249,7 +249,7 @@ public class TokenizerTest {
 		
 	@Test
 	public void testImageManipulationFunction() {
-		String expression = "ImageClip(\"vortex.jpg\", x, y)";
+		String expression = "imageClip(\"vortex.jpg\", x, y)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new ImageClipToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
@@ -260,8 +260,8 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("y"), tokens.get(6));
 		assertEquals(new RightParenToken(), tokens.get(7));
 		
-		String expression2 = "ImageWrap(\"vortex.jpg\", x, y)";
-		tokens = tokenizer.parseTokens(expression2);
+		expression = "imageWrap(\"vortex.jpg\", x, y)";
+		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new ImageWrapToken(), tokens.get(0));
 		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new ImageToken("vortex.jpg"), tokens.get(2));
