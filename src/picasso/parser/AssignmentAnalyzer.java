@@ -19,12 +19,12 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
 		tokens.pop(); // Remove the assignment token
 		// the parameters are the next tokens on the stack.
-		ExpressionTreeNode param1 = SemanticAnalyzer.getInstance().generateExpressionTree(
+		ExpressionTreeNode param = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 		String var = ((IdentifierToken) tokens.peek()).getName();				
 		SemanticAnalyzer.getInstance().generateExpressionTree(tokens);
 				
-		return new Assignment(var, param1);
+		return new Assignment(var, param);
 	}
 
 }
