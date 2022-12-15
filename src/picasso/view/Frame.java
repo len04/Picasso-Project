@@ -1,9 +1,14 @@
 package picasso.view;
 
-import java.util.*;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
+import java.awt.*;
+
+import java.util.*;
 import java.awt.image.BufferedImage;
 
 
@@ -35,6 +40,7 @@ public class Frame extends JFrame {
 		errorField.setText(s);
 	}
 
+
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -51,6 +57,7 @@ public class Frame extends JFrame {
 		errorField = new JTextField (10);
 		inputField = new JTextField(10);	
 		errorField.setEditable(false);
+
 
 		myPane = new JPanel();
 		myPane.setSize(500, 200);
@@ -72,6 +79,7 @@ public class Frame extends JFrame {
 		Evaluate = commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluator()));
 
 		commands.add("Save", new Writer());
+		commands.add("Randomize", new Randomizer());
 		commands.add(errorLabel);
 		commands.add(errorField);
 		setErrorField("");
@@ -154,6 +162,10 @@ public class Frame extends JFrame {
 
 	public static JTextField getInput() {
 		return inputField;
+	}
+
+	public static void setInputField(String s){
+		inputField.setText(s);
 	}
 
 	public static JTextField getErrorField() {
