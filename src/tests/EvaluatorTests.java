@@ -19,12 +19,15 @@ import picasso.parser.language.expressions.*;
  * 
  */
 public class EvaluatorTests {
+	
+	private ExpressionTreeGenerator parser;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
+		parser = new ExpressionTreeGenerator();
 	}
 
 	@Test
@@ -169,11 +172,111 @@ public class EvaluatorTests {
 		}
 	
 	@Test
+	public void testCeilingEvaluation() {
+		Ceiling myTree = new Ceiling(new X());
+		
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.ceil(.4), Math.ceil(.4), Math.ceil(.4)), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(Math.ceil(.999), Math.ceil(.999), Math.ceil(.999)), myTree.evaluate(.999, -1));
+		assertEquals(new RGBColor(Math.ceil(-.7), Math.ceil(-.7), Math.ceil(-.7)), myTree.evaluate(-.7, -1));
+	
+		// test the ints; remember that y's value doesn't matter
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.ceil(i), Math.ceil(i), Math.ceil(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.ceil(i), Math.ceil(i), Math.ceil(i)), myTree.evaluate(i, i));
+		}
+	
+		double[] tests = { -.7, -.00001, .000001, .5 };
+	
+		for (double testVal : tests) {
+			double ceilOfTestVal = Math.ceil(testVal);
+			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(ceilOfTestVal, ceilOfTestVal, ceilOfTestVal),
+					myTree.evaluate(testVal, testVal));
+			}
+		}
+	
+	@Test
+	public void testArcTanEvaluation() {
+		ArcTangent myTree = new ArcTangent(new X());
+		
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.atan(.4), Math.atan(.4), Math.atan(.4)), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(Math.atan(.999), Math.atan(.999), Math.atan(.999)), myTree.evaluate(.999, -1));
+		assertEquals(new RGBColor(Math.atan(-.7), Math.atan(-.7), Math.atan(-.7)), myTree.evaluate(-.7, -1));
+	
+		// test the ints; remember that y's value doesn't matter
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.atan(i), Math.atan(i), Math.atan(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.atan(i), Math.atan(i), Math.atan(i)), myTree.evaluate(i, i));
+		}
+	
+		double[] tests = { -.7, -.00001, .000001, .5 };
+	
+		for (double testVal : tests) {
+			double atanOfTestVal = Math.atan(testVal);
+			assertEquals(new RGBColor(atanOfTestVal, atanOfTestVal, atanOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(atanOfTestVal, atanOfTestVal, atanOfTestVal),
+					myTree.evaluate(testVal, testVal));
+			}
+		}
+	
+	@Test
+	public void testExpEvaluation() {
+		Exponential myTree = new Exponential(new X());
+		
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.exp(.4), Math.exp(.4), Math.exp(.4)), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(Math.exp(.999), Math.exp(.999), Math.exp(.999)), myTree.evaluate(.999, -1));
+		assertEquals(new RGBColor(Math.exp(-.7), Math.exp(-.7), Math.exp(-.7)), myTree.evaluate(-.7, -1));
+	
+		// test the ints; remember that y's value doesn't matter
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.exp(i), Math.exp(i), Math.exp(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.exp(i), Math.exp(i), Math.exp(i)), myTree.evaluate(i, i));
+		}
+	
+		double[] tests = { -.7, -.00001, .000001, .5 };
+	
+		for (double testVal : tests) {
+			double expOfTestVal = Math.exp(testVal);
+			assertEquals(new RGBColor(expOfTestVal, expOfTestVal, expOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(expOfTestVal, expOfTestVal, expOfTestVal),
+					myTree.evaluate(testVal, testVal));
+			}
+		}
+	
+	@Test
+	public void testLogEvaluation() {
+		Log myTree = new Log(new X());
+		
+		// some straightforward tests
+		assertEquals(new RGBColor(Math.log(.4), Math.log(.4), Math.log(.4)), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(Math.log(.999), Math.log(.999), Math.log(.999)), myTree.evaluate(.999, -1));
+		assertEquals(new RGBColor(Math.log(.7), Math.log(.7), Math.log(.7)), myTree.evaluate(-.7, -1));
+	
+		// test the ints; remember that y's value doesn't matter
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.log(Math.abs(i)), Math.log(Math.abs(i)), Math.log(Math.abs(i))), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.log(Math.abs(i)), Math.log(Math.abs(i)), Math.log(Math.abs(i))), myTree.evaluate(i, i));
+		}
+	
+		double[] tests = { -.7, -.00001, .000001, .5 };
+	
+		for (double testVal : tests) {
+			double logOfTestVal = Math.log(Math.abs(testVal));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(logOfTestVal, logOfTestVal, logOfTestVal),
+					myTree.evaluate(testVal, testVal));
+			}
+		}
+	
+	@Test
 	public void testAdditionEvaluation() {
 		Addition myTree = new Addition(new X(), new Y());
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 0));
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(i+i, i+i, i+i), myTree.evaluate(i, i));
-			assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(1, 0));
 			
 		}
 	}
@@ -249,15 +352,56 @@ public class EvaluatorTests {
 	}
 	
 	@Test
-	public void testAssignment() {
-		ExpressionTreeNode exp = new Floor(new X());	
-		Assignment myTree = new Assignment("f", exp);
-		Variable var = new Variable("f");				
+	public void testAssignmentEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("a = x + y");
+		assertEquals(new RGBColor(1, 1, 1), e.evaluate(1, 0));
+		
 		for (int i = -1; i <= 1; i++) {
-			if (i != 0) {
-			assertEquals(myTree.evaluate(i, i), exp.evaluate(i, i));
-			assertEquals(var.evaluate(i, i), exp.evaluate(i, i));			
-			}
+			assertEquals(new RGBColor(i, i, i), e.evaluate(i, 0));	
 		}
-	}	
+	}
+	
+	@Test
+	public void testRgbToYCrCbEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb(x)");
+		
+		assertEquals(new RGBColor (0, 0, 0), e.evaluate(0, 0));
+		assertEquals(new RGBColor (1.0, 9.999999999998899E-5, 9.999999999998899E-5), e.evaluate(1,1));
+	}
+	
+	@Test
+	public void testyCrCbToRGBEvaluatiton (){
+		ExpressionTreeNode e = parser.makeExpression("yCrCbToRGB(x)");
+		
+		assertEquals(new RGBColor (0, 0, 0), e.evaluate(0, 0));
+		assertEquals(new RGBColor (2.4021999999999997, -0.06010000000000004, 2.771), e.evaluate(1, 1));
+	}
+	
+	@Test
+	public void testInversionEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("!x");
+
+		assertEquals(new RGBColor (-1,-1,-1), e.evaluate(1, 1));
+		assertEquals(new RGBColor (0, 0, 0), e.evaluate(0, 0));
+		
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i, i, i), e.evaluate(-i, -i));	
+		}
+	}
+	
+	@Test
+	public void testPerlinColorEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("perlinColor(x,y)");
+	
+		assertEquals(new RGBColor (0.02276399999999995, -0.24566505471999994, 0.083736), e.evaluate(0, 0));	
+		assertEquals(new RGBColor (0.45749417280000004,0.09574400000000001 , 0.19672254720000015), e.evaluate(1, 1));
+	}
+	
+	@Test
+	public void testPerlinBWEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("perlinBW(x,y)");
+
+		assertEquals(new RGBColor (0.02276399999999995, 0.02276399999999995, 0.02276399999999995), e.evaluate(0, 0));
+		assertEquals(new RGBColor  (0.45749417280000004, 0.45749417280000004 , 0.45749417280000004), e.evaluate(1, 1));
+	}
 }

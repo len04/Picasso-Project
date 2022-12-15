@@ -3,8 +3,6 @@ package picasso.view.commands;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JTextField;
-
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
@@ -35,8 +33,12 @@ public class Evaluator implements Command<Pixmap> {
 				double evalX = imageToDomainScale(imageX, size.width);
 				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 				target.setColor(imageX, imageY, pixelColor);
+
 			}
 		}
+		if (Frame.getInput().getText().contains("=")) {
+			Frame.Adder();
+		}		
 	}
 
 	/**
