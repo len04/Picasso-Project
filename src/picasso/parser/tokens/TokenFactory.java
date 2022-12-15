@@ -10,7 +10,6 @@ import java.util.HashMap;
 import picasso.parser.ParseException;
 import picasso.parser.language.BuiltinFunctionsReader;
 import picasso.parser.tokens.chars.CommaToken;
-import picasso.parser.tokens.chars.LeftBracketToken;
 import picasso.parser.tokens.chars.RightBracketToken;
 
 /**
@@ -90,6 +89,7 @@ public class TokenFactory {
 		if (!(b instanceof NumberToken)) {
 			throw new ParseException("Error parsing color, expected number");
 		}
+
 
 		Token rightBracket = parse(tokenizer);
 		if (!(rightBracket instanceof RightBracketToken)) {

@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import picasso.model.Pixmap;
 import picasso.util.Command;
 import picasso.util.NamedCommand;
-import picasso.view.Frame;
 
 /**
  * The collection of commands represented as buttons that apply to the active
