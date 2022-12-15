@@ -33,7 +33,6 @@ public class PerlinBW extends BinaryOperator {
 		RGBColor result2 = param2.evaluate(x, y);
 		
 		double c = ImprovedNoise.noise(result1.getRed() + 0.3, result2.getRed() + 0.3, 0);
-	
 		return new RGBColor(c, c, c);
 	}
 
