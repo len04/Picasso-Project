@@ -20,7 +20,7 @@ public class Assignment extends ExpressionTreeNode {
 	 */
 	public Assignment(String name, ExpressionTreeNode param) {
 		this.expression = param; 
-		IdentifierAnalyzer.getID().put(name, param);
+		IdentifierAnalyzer.idToExpression.put(name, param);
 	}
 
 	/**

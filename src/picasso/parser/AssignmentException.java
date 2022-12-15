@@ -11,8 +11,7 @@ import picasso.view.Frame;
 public class AssignmentException extends RuntimeException {
 
 	public AssignmentException(String message) {
-		super("ParseException: " + message);
-		System.out.println("REACHED");
+		super("AssignmentException: " + message);
 		Frame.setErrorField(message);
 	}
 
