@@ -12,7 +12,9 @@ public class ParseException extends RuntimeException {
 
 	public ParseException(String message) {
 		super("ParseException: " + message);
-		Frame.setErrorField(message);
+		if (Frame.errorField != null) {
+			Frame.setErrorField(message);
+		}
 	}
 
 }

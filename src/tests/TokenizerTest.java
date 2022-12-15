@@ -79,10 +79,9 @@ public class TokenizerTest {
 
 	@Test
 	public void testTokenizeInvalidColor() {
-		String expression = "[1, 1.0001, 1]";
-
+		String expression = "[2, 3 ,4]";
 		assertThrows(ParseException.class, () -> {
-			tokens = tokenizer.parseTokens(expression);
+			tokenizer.parseTokens(expression);
 		});
 	}
 	
