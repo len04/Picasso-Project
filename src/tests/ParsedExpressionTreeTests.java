@@ -297,11 +297,11 @@ public class ParsedExpressionTreeTests {
 	
 	@Test
 	public void assignmentTests() {
-		ExpressionTreeNode e = parser.makeExpression("f = floor(x)");
+		ExpressionTreeNode e = parser.makeExpression("f= sin(x)");
 		String f = "f";
-		Assignment result = new Assignment(f, new Floor(new X()));
-		assertEquals(result, e);		
-	}	
+		Assignment result = new Assignment(f, new Sine(new X()));
+		assertEquals(result, e);
+	}
 	
 	@Test
 	public void RGBToYCrCbFunctionTests() {
