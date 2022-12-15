@@ -1,5 +1,6 @@
 package picasso.parser;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
@@ -16,6 +17,7 @@ import picasso.parser.tokens.Token;
 public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 
 	private String var;
+	private Token t = null;
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
@@ -23,7 +25,10 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		// the parameters are the next tokens on the stack.
 		ExpressionTreeNode param = SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-		Token t = tokens.peek();
+		try {t = tokens.peek();
+		}
+		catch (EmptyStackException e) {
+			throw new AssignmentException("Right-hand not assigned correctly");}			
 		String tString = t.toString();
 		if (!(t instanceof IdentifierToken) 
 			|| (tString.contains("x"))
