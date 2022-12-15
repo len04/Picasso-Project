@@ -3,22 +3,17 @@ package picasso.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.Random;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
 import java.util.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
 
 
 import picasso.model.Pixmap;
-import picasso.model.Randomize;
 import picasso.util.ThreadedCommand;
 import picasso.view.commands.*;
 
