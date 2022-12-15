@@ -42,6 +42,7 @@ public class ImageWrap extends ExpressionTreeNode {
 		return image.evaluate(new_x, new_y);
 	}
 	
+	@Override
 	public boolean equals(Object o) {
 		if (o == this) {
 			return true;
