@@ -13,6 +13,7 @@ public class AssignmentException extends RuntimeException {
 	public AssignmentException(String message) {
 		super("AssignmentException: " + message);
 		Frame.setErrorField(message);
+		Frame.clickEvaluate();
 	}
 
 }
