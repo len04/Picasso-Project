@@ -8,14 +8,14 @@ import picasso.model.Randomize;
 
 
 /**
- * Generate random expression
+ * Generates a random expression
  * 
  * @author Matt Stock
  */
 public class Randomizer extends FileCommand<Pixmap> {
 
 	/**
-	 * Creates random image
+	 * Creates a random image
 	 */
 	public Randomizer() {
 		super(JFileChooser.OPEN_DIALOG);
