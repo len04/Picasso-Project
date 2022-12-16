@@ -295,24 +295,14 @@ public class ParsedExpressionTreeTests {
 	}
 	
 	@Test
-<<<<<<< HEAD
 	public void assignmentExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("f = floor( x )");	
 		assertEquals(new Assignment("f", new Floor(new X())), e);
 		
 		// no spaces!
 		ExpressionTreeNode e1 = parser.makeExpression("f=floor(x)");	
-		assertEquals(new Assignment("f", new Floor(new X())), e1);		
+		assertEquals(new Assignment("f", new Floor(new X())), e1);	
 	}
-
-=======
-	public void assignmentTests() {
-		ExpressionTreeNode e = parser.makeExpression("f= sin(x)");
-		String f = "f";
-		Assignment result = new Assignment(f, new Sine(new X()));
-		assertEquals(result, e);
-	}
->>>>>>> refs/remotes/origin/main
 	
 	@Test
 	public void RGBToYCrCbFunctionTests() {
