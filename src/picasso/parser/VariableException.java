@@ -14,6 +14,7 @@ public class VariableException extends RuntimeException {
 		super("VariableException");
 		String m = name+ " isn't defined";
 		Frame.setErrorField(m);
+		Frame.clickEvaluate();
 	}
 
 }
