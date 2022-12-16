@@ -6,6 +6,8 @@ import picasso.parser.tokens.chars.CharToken;
 /**
  * Represents the invert sign token
  * 
+ * @author Ngoc Le
+ * 
  */
 public class InvertToken extends CharToken implements OperationInterface {
 	public InvertToken() {

@@ -5,6 +5,8 @@ import picasso.parser.tokens.chars.CharToken;
 
 /**
  * Represents the equals sign in the Picasso programming language
+ * 
+ * @author Fekry Mostafa
  */
 public class AssignmentToken extends CharToken implements OperationInterface {
 	public AssignmentToken() {

@@ -6,6 +6,8 @@ import picasso.parser.tokens.chars.CharToken;
 /**
  * Represents the divide sign token
  * 
+ * @author Ngoc Le
+ * 
  */
 public class DivideToken extends CharToken implements OperationInterface {
 	public DivideToken() {

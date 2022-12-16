@@ -6,6 +6,8 @@ import picasso.parser.tokens.chars.CharToken;
 /**
  * Represents the times sign token
  * 
+ * @author Ngoc Le
+ * 
  */
 public class TimesToken extends CharToken implements OperationInterface {
 	public TimesToken() {

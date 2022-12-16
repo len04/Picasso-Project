@@ -6,6 +6,8 @@ import picasso.parser.tokens.chars.CharToken;
 /**
  * Represents the exponentiate sign token
  * 
+ * @author Ngoc Le
+ * 
  */
 public class ExponentiateToken extends CharToken implements OperationInterface {
 	public ExponentiateToken() {

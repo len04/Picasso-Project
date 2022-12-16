@@ -6,6 +6,8 @@ import picasso.parser.tokens.chars.CharToken;
 /**
  * Represents the minus sign token
  * 
+ * @author Ngoc Le
+ * 
  */
 public class MinusToken extends CharToken implements OperationInterface {
 	public MinusToken() {
