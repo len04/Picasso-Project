@@ -60,6 +60,7 @@ public class Evaluator implements Command<Pixmap> {
 
 		String text = Frame.getInput().getText();
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
+		Frame.setErrorField("");
 		return expTreeGen.makeExpression(text);
 
 		// return new Multiply( new X(), new Y() );
