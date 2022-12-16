@@ -38,4 +38,29 @@ public class Assignment extends ExpressionTreeNode {
 		return new RGBColor(red, green, blue);		
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+
+		if (!(o instanceof Assignment)) {
+			return false;
+		}
+
+		// Make sure the objects are the same type
+
+		if (o.getClass() != this.getClass()) {
+			return false;
+		}
+
+		Assignment uf = (Assignment) o;
+
+		// check if their parameters are equal
+		if (!this.expression.equals(uf.expression)) {
+			return false;
+		}
+		return true;
+	}
+	
 }
