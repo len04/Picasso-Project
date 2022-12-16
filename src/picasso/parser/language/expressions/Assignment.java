@@ -14,9 +14,9 @@ public class Assignment extends ExpressionTreeNode {
 	private ExpressionTreeNode expression;
 
 	/**
-	 * Create a assignment expression that takes as two parameters the given expression
+	 * Create a assignment expression that takes as two parameters the given expression and the string
 	 * 
-	 * @param param the expression to equals
+	 * @param param the expression to assign
 	 */
 	public Assignment(String name, ExpressionTreeNode param) {
 		this.expression = param; 

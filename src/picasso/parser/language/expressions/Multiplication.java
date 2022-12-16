@@ -11,7 +11,7 @@ import picasso.parser.language.ExpressionTreeNode;
 public class Multiplication extends BinaryOperator {
 
 	/**
-	 * Create a floor expression that takes as a parameter the given expression
+	 * Create a multiplication expression that takes as a parameter the given expression
 	 * 
 	 * @param param the expression to floor
 	 */

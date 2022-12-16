@@ -8,6 +8,7 @@ import picasso.parser.language.ExpressionTreeNode;
  * Represents a variable
  * 
  * @author Sara Sprenkle
+ * @author Fekry Mostafa
  *
  */
 public class Variable extends ExpressionTreeNode {
@@ -21,7 +22,13 @@ public class Variable extends ExpressionTreeNode {
 		this.name = name;
 		
 	}
-
+	
+	/**
+	 * Evaluates this expression at the given x,y point by evaluating the expression of
+	 * the variable
+	 * 
+	 * @return the color from evaluating the result of the variable
+	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
 	    recursionDepth++;

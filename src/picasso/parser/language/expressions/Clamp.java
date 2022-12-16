@@ -5,6 +5,7 @@ import picasso.parser.language.ExpressionTreeNode;
 /**
  * Represents the clamp function in the Picasso language.
  * 
+ * @author Matt Stock
  */
 public class Clamp extends UnaryFunction {
 

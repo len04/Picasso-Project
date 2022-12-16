@@ -13,7 +13,7 @@ public class Inversion extends UnaryFunction {
 	/**
 	 * Create a negation expression that takes as a parameter the given expression
 	 * 
-	 * @param param the expression to negation
+	 * @param param the expression to negate
 	 */
 	public Inversion(ExpressionTreeNode param) {
 		super(param);

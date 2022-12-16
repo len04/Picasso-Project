@@ -5,6 +5,7 @@ import picasso.parser.language.ExpressionTreeNode;
 /**
  * Represents the tangent function in the Picasso language.
  * 
+ * @author Matt Stock
  */
 public class Tangent extends UnaryFunction {
 
