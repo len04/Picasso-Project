@@ -39,6 +39,10 @@ public class Frame extends JFrame {
 	public static void setErrorField(String s) {
 		errorField.setText(s);
 	}
+	
+		public static void clickEvaluate(){
+		Evaluate.doClick();
+	}
 
 
 	public Frame(Dimension size) {

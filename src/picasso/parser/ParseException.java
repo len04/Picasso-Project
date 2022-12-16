@@ -14,6 +14,7 @@ public class ParseException extends RuntimeException {
 		super("ParseException: " + message);
 		if (Frame.errorField != null) {
 			Frame.setErrorField(message);
+			Frame.clickEvaluate();
 		}
 	}
 

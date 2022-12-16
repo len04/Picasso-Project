@@ -57,8 +57,9 @@ public class Evaluator implements Command<Pixmap> {
 		// Note, when you're testing, you can use the ExpressionTreeGenerator to
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
-
+		if (Frame.getErrorField().getText() != ""){
 		Frame.errorField.setText("");
+		}
 		String text = Frame.getInput().getText();
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		
