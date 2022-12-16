@@ -7,7 +7,7 @@ import picasso.parser.language.expressions.Modulo;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the division operation.
+ * Handles parsing the mod operation.
  * 
  * @author Ngoc Le
  * 

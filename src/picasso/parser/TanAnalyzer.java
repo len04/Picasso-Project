@@ -10,6 +10,8 @@ import picasso.parser.tokens.Token;
  * Handles parsing the Tan function.
  * 
  * 
+ * @author Matt Stock
+ * 
  */
 public class TanAnalyzer extends UnaryFunctionAnalyzer {
 

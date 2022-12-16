@@ -7,9 +7,9 @@ import picasso.parser.language.expressions.Clamp;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the floor function.
+ * Handles parsing the clamp function.
  * 
- * @author Sara Sprenkle
+ * @author Matt Stock
  * 
  */
 public class ClampAnalyzer extends UnaryFunctionAnalyzer {

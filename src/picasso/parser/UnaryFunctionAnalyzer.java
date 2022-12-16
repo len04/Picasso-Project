@@ -8,7 +8,6 @@ import picasso.parser.tokens.Token;
 /**
  * Parses a function that takes one expression as a parameter.
  * 
- * XXX: Not sure if this class is necessary.
  * 
  * @author Sara Sprenkle
  * 

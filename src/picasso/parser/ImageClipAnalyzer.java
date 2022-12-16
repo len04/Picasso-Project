@@ -6,7 +6,11 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Image;
 import picasso.parser.language.expressions.ImageClip;
 import picasso.parser.tokens.Token;
-
+/**
+ * Handles Parsing the ImageClip function.
+ * 
+ * @author Petra Ilic
+ */
 public class ImageClipAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override

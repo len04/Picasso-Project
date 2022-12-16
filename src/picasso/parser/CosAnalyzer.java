@@ -7,7 +7,7 @@ import picasso.parser.language.expressions.Cosine;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the sine function.
+ * Handles parsing the cosine function.
  * 
  * @author Ngoc le
  * 

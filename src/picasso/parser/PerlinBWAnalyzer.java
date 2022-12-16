@@ -5,7 +5,11 @@ import java.util.Stack;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.PerlinBW;
 import picasso.parser.tokens.Token;
-
+/**
+ * Handles parsing the PerlinBW function.
+ * 
+ * @author Petra Ilic
+ */
 public class PerlinBWAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override

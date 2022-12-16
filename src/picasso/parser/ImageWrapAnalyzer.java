@@ -6,7 +6,11 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Image;
 import picasso.parser.language.expressions.ImageWrap;
 import picasso.parser.tokens.Token;
-
+/**
+ * Handles parsing the ImageWrap function
+ * 
+ * @author Petra Ilic
+ */
 public class ImageWrapAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
