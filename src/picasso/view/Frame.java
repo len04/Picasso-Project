@@ -97,9 +97,7 @@ public class Frame extends JFrame {
 		String exp = text.substring( index + 1);
 		String name = text.substring(0, index);
 		if (VarToExp.containsKey(name)) {
-			System.out.println("TT1");
 			if (VarToExp.get(name).equals(exp)) {
-				System.out.println("TT");
 				return;
 			}
 			removeButton(name + "=" + exp);
