@@ -133,7 +133,6 @@ public class Frame extends JFrame {
 	private class DownAction extends AbstractAction {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("DOWN");	
 			if (clicked < buttons.size())
 			{
 				clicked += 1;        	
@@ -147,7 +146,6 @@ public class Frame extends JFrame {
 	private class UpAction extends AbstractAction {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("UP");
 			if (clicked > 0) { 
 				clicked -= 1;
 				JButton upButton = buttons.get(clicked);
