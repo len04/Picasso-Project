@@ -1,24 +1,30 @@
 package picasso.model;
 import java.util.Arrays;
+/**
+ * A helper function for Randomize that generates a random operator
+ * 
+ * @author Matt Stock
+ *
+ */
 
 public class RandomOperator {
 
-    static String[] operators = {"+","-","*","/"};
-    
-    public static String RandomOp(){
+	static String[] operators = {"+","-","*","/"};
+
+	public static String RandomOp(){
 
 
-        int x = (int)(Math.random()*(operators.length));
+		int x = (int)(Math.random()*(operators.length));
 
-        return operators[x];
-    }
+		return operators[x];
+	}
 
 
 
-    public static boolean isOp(String s){
+	public static boolean isOp(String s){
 
-         return Arrays.asList(operators).contains(s);
+		return Arrays.asList(operators).contains(s);
 
-    }
+	}
 
 }
