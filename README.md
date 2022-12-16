@@ -26,3 +26,9 @@ This code base originated as a project in a course at Duke University.  The prof
 Fekry, Matt, Ngoc, and Petra
 
 ## How to Use Extensions
+
+##### 1. Displaying Variables
+This extension allows the user to display saved variables on the right side of their screen after assignment. To do this, you simply assign a variable to a value, expression, or an image in the TextBox and press evaluate. 
+
+##### 2. Up & down keystrokes
+This extension allows the user to navigate the variable panel on the right of their screen (after assigning more than one variable) by pressing the up or down key on their keyboard. The image is automatically inputed and displayed for the user. Note: the user has to select the frame on the right of the screen in order for the keystrokes to work (i.e., not the TextBox).
