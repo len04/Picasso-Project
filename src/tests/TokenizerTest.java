@@ -86,9 +86,9 @@ public class TokenizerTest {
 	@Test
 	public void testQuotedStringImage() {
 		String expression = " \"vortex.png\" ";
-		assertThrows(ParseException.class, () -> {
-			tokenizer.parseTokens(expression);
-		});
+		tokens = tokenizer.parseTokens(expression);
+		// handled quietly by generating black image and providing error message in error box
+		assertEquals(new ImageToken("vortex.png"), tokens.get(0));
 	}
 
 	@Test
