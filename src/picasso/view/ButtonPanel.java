@@ -43,6 +43,8 @@ public class ButtonPanel extends JPanel {
 				action.execute(myView.getPixmap());			
 				myView.refresh();			
 				Frame.errorField.setText("");
+				action.execute(myView.getPixmap());	
+				myView.refresh();	
 
 			}
 		});
