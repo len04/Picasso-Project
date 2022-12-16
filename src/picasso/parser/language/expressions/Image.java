@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.view.Frame;
 
 /**
  * Represents the Image expression tree node in the Picasso language.
@@ -29,7 +30,9 @@ public class Image extends ExpressionTreeNode {
 			this.name = imageName;
 			this.b_image = ImageIO.read(new File("images/"+ name));
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace();	
+			String m = name + " isn't defined";
+			Frame.setErrorField(m);
 			this.b_image = null;
 		}
 	}
