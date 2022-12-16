@@ -24,3 +24,5 @@ This code base originated as a project in a course at Duke University.  The prof
 ## Group Members
 
 Fekry, Matt, Ngoc, and Petra
+
+## How to Use Extensions
