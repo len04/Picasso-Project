@@ -41,7 +41,9 @@ public class ButtonPanel extends JPanel {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				action.execute(myView.getPixmap());			
-				myView.refresh();				
+				myView.refresh();
+				action.execute(myView.getPixmap());			
+				myView.refresh();
 
 			}
 		});
